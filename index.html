@@ -4,65 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Association Les Grognards</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+          /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a3c1a;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #00ff00;
+            color: #1a3c1a;
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top::after {
+            content: "↑";
+        }
+        /* Background with subtle splash effect inspired by logo */
+        body {
+            background: linear-gradient(135deg, #f3e7e9 0%, #e0f7fa 100%);
+            background-size: cover;
+            font-family: sans-serif;
+        }
+
+        /* Header styling with logo-inspired colors */
+        header {
+            background: linear-gradient(90ded, #1e40af, #9333ea);
+            border-bottom: 5px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px 0;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #ff4444; /* Red from dice */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin: 0 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        header p {
+            color: #facc15; /* Yellow from splashes */
+            font-size: 1.125rem;
+            margin: 8px 20px 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Logo styling */
+        header img.logo {
+            max-width: 150px; /* Prevent overflow by limiting width */
+            max-height: 100px; /* Adjust height to avoid overflow */
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+
+        /* Navigation styling */
+        nav {
+            background: #1e293b;
+            border-bottom: 2px solid #9333ea;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav div {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        nav a {
+            color: #e0f7fa;
+            font-weight: 500;
+            text-decoration: none;
+            margin: 0 24px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #facc15;
+        }
+
+        /* Section headers with vibrant accents */
+        section h2 {
+            color: #1e40af;
+            border-bottom: 2px solid #ff4444;
+            padding-bottom: 8px;
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin: 0 auto 16px;
+            text-align: center;
+        }
+
+        section h3, section h4 {
+            color: #9333ea;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 24px 0 8px;
+        }
+
+        /* Main content styling */
+        main {
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* Paragraph and list styling */
+        p {
+            color: #374151;
+            font-size: 1.125rem;
+            line-height: 1.5;
+            margin: 0 0 16px;
+        }
+
+        ul {
+            color: #374151;
+            margin: 0 0 16px 20px;
+        }
+
+        ul li {
+            position: relative;
+            margin: 8px 0;
+        }
+
+        ul li::before {
+            content: "🎲";
+            color: #ff4444;
+            font-size: 0.9em;
+            margin-right: 8px;
+        }
+
+        /* Links with logo color scheme */
+        a {
+            color: #9333ea;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #facc15;
+        }
+
+        /* Footer with gradient */
+        footer {
+            background: linear-gradient(90deg, #1e40af, #9333ea);
+            border-top: 5px solid #000;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px 0;
+        }
+
+        footer p {
+            color: #e0f7fa;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            nav div {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 5px 0;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 16px;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header img.logo {
+                margin: 10px auto 0;
+            }
+
+            header h1, header p {
+                margin: 0;
+            }
+        }
+    </style>
+    <script>
+        // Set the date and time to 12:21 AM CEST on Tuesday, August 12, 2025
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateTime = new Date('2025-08-12T00:21:00+02:00');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'CET' };
+            const formattedDate = dateTime.toLocaleString('fr-FR', options).replace(':', ' à ');
+            document.getElementById('date-time').textContent = `Dernière mise à jour : ${formattedDate} CEST`;
+        });
+    </script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
     <!-- Header -->
-    <header class="bg-blue-900 text-white py-6">
-        <div class="container mx-auto px-4 text-center">  
-           <div class="logo-container"><img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo"> </div>
-            <h1 class="text-4xl font-bold">Association Les Grognards</h1>
-            <p class="mt-2 text-lg">Jeux de figurines à Roanne et alentours</p>
+    <header>
+        <div>
+            <h1>Association Les Grognards</h1>
+            <p>Jeux de figurines à Roanne et alentours</p>
         </div>
+        <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-gray-800 text-white py-4 sticky top-0">
-        <div class="container mx-auto px-4 flex justify-center space-x-6">
-            <a href="#home" class="hover:text-blue-300">Accueil</a>
-            <a href="#about" class="hover:text-blue-300">À propos</a>
-            <a href="#membership" class="hover:text-blue-300">Adhésion</a>
-            <a href="#bureau" class="hover:text-blue-300">Bureau</a>
-            <a href="#location" class="hover:text-blue-300">Où nous trouver</a>
-            <a href="#contact" class="hover:text-blue-300">Contact</a>
+    <nav>
+        <div>
+            <a href="#home">Accueil</a>
+            <a href="#about">À propos</a>
+            <a href="#membership">Adhésion</a>
+            <a href="#bureau">Bureau</a>
+            <a href="#location">Où nous trouver</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main>
         <!-- Home Section -->
-        <section id="home" class="mb-12">
-            <div class="text-center">
-                <h2 class="text-3xl font-semibold mb-4">Bienvenue chez Les Grognards</h2>
-                <p class="text-lg text-gray-700">
+        <section id="home">
+            <div>
+                <h2>Bienvenue chez Les Grognards</h2>
+                <p>
                     Rejoignez notre communauté passionnée de jeux de figurines basée à Roanne et ses alentours. Découvrez nos événements, tournois et ateliers dans une ambiance conviviale.
                 </p>
             </div>
         </section>
 
         <!-- À propos Section -->
-        <section id="about" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">À propos</h2>
-            <h3 class="text-2xl font-semibold mt-6 mb-2">Bienvenue sur le Discord des Grognards</h3>
-            <p class="text-lg text-gray-700">
+        <section id="about">
+            <h2>À propos</h2>
+            <h3>Bienvenue sur le Discord des Grognards</h3>
+            <p>
                 Bienvenue sur le discord de l’association des Grognards, association de jeux de figurine basée à Roanne et ses alentours.
             </p>
 
-            <h3 class="text-2xl font-semibold mt-6 mb-2">Le but de l’association est de :</h3>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <h3>Le but de l’association est de :</h3>
+            <ul>
                 <li>Promouvoir le jeu de figurine sous toutes ses formes dans la région Roannaise.</li>
                 <li>Organiser des évènements associatifs en lien avec le jeu de figurine.</li>
                 <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold mt-6 mb-2">Règlement</h3>
-            <p class="text-lg text-gray-700">
+            <h3>Règlement</h3>
+            <p>
                 L'association et le discord possède à présent une charte qu'il faut respecter ! Ces règles ont pour but d'informer le bureau et les membres de l'association Grognards d'un comportement approprié et les procédures à suivre en cas de non-respect des règles et/ou d'un comportement en désaccord avec les valeurs des Grognards.
             </p>
 
-            <h4 class="text-xl font-semibold mt-4 mb-2">L'esprit Grognard</h4>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <h4>L'esprit Grognard</h4>
+            <ul>
                 <li>Le but primaire de cette association est de permettre à ses membres de s'amuser, passer un moment d'entente avec d'autres passionné-e-s de leurs hobbys.</li>
                 <li>Toute interaction qui nuit à cette intention n'est pas en lien avec l'Esprit des Grognards (y compris les interactions sur Discord).</li>
                 <li>Toute action entreprise par un membre qui nuit au jeu n'est pas en lien avec l'Esprit des Grognards.</li>
@@ -72,12 +293,12 @@
                 <li>Aucun membre ne doit faire en sorte d'abimer ou de casser les affaires de l'association ni les affaires d'un autre membre.</li>
                 <li>Le spam de langage SMS est à éviter sur le discord, pour le confort de tous !</li>
             </ul>
-            <p class="text-lg text-gray-700">
+            <p>
                 Le bureau se réserve les droits de jugement d'une situation qui leur est apportée et les membres du bureau sont les seules personnes à prendre une action "disciplinaire" et à juger la durée des actions disciplinaires.
             </p>
 
-            <h4 class="text-xl font-semibold mt-4 mb-2">Actions disciplinaires :</h4>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <h4>Actions disciplinaires :</h4>
+            <ul>
                 <li>Mute Discord 1jour/1semaine/définitivement</li>
                 <li>Ban Discord</li>
                 <li>Interdiction d'événement(s)</li>
@@ -87,39 +308,39 @@
         </section>
 
         <!-- Adhésion Section -->
-        <section id="membership" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">Adhésion</h2>
-            <p class="text-lg text-gray-700">
+        <section id="membership">
+            <h2>Adhésion</h2>
+            <p>
                 Devenir Adhérent des Grognards permet de soutenir l’association qui pourra en retour organiser des événements, tournois ou acheter du matériel adéquat pour jouer dans de bonnes conditions. L’adhésion annuelle coûte 25€ et (système de prorata si plus tard dans l'année). Devenir un Grognard vous donne accès :
             </p>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <ul>
                 <li>Discord de l’association dans son intégralité.</li>
                 <li>Droit de vote/participation aux assemblées générales et libre accès une fois par mois à la salle des canaux de Riorges.</li>
                 <li>Participation aux tournois organisés par Les Grognards avec une remise de 5€.</li>
                 <li>Emprunt de matériel (table, tapis et décors appartenant à l’association).</li>
             </ul>
-            <p class="text-lg text-gray-700">
+            <p>
                 Une à deux fois par mois, nous avons accès grâce à la mairie de Riorges, à un local permettant aux Grognards d'organiser divers évènements et AG.
             </p>
         </section>
 
         <!-- Paiement Section -->
-        <section id="payment" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">Paiement</h2>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+        <section id="payment">
+            <h2>Paiement</h2>
+            <ul>
                 <li>Espèces</li>
-                <li>PAYPAL : <a href="https://www.paypal.me/grognardsRoannes" class="text-blue-600 hover:underline">https://www.paypal.me/grognardsRoannes</a> ("envoi d'argent à des proches" afin d'éviter les frais)</li>
+                <li>PAYPAL : <a href="https://www.paypal.me/grognardsRoannes">https://www.paypal.me/grognardsRoannes</a> ("envoi d'argent à des proches" afin d'éviter les frais)</li>
                 <li>Virement : voir avec les trésoriers</li>
             </ul>
         </section>
 
         <!-- Bureau Section -->
-        <section id="bureau" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">Le Bureau</h2>
-            <p class="text-lg text-gray-700">
+        <section id="bureau">
+            <h2>Le Bureau</h2>
+            <p>
                 Les Rôles des membres du Bureau :
             </p>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <ul>
                 <li>Président : veille au bon fonctionnement de l’association en général, organise les réunions, les AG et lui seul a le pouvoir de trancher sur une décision.</li>
                 <li>Vice-Président : apporte son aide au Président afin que ce dernier puisse lui déléguer certaines missions.</li>
                 <li>Trésorier : veille sur les fonds de l’association et sa santé financière. Ceci inclue les affaires de l’association. Lui seul a le pouvoir d’autoriser une transaction avec les fonds ou les affaires de l’association.</li>
@@ -127,10 +348,10 @@
                 <li>Secrétaire : a pour mission la communication de l’association que ce soit en interne ou externe. Cette mission englobe la gestion des moyens de communication de l’association (page Facebook, Discord etc.).</li>
                 <li>Vice-Secrétaire : apporte son aide au Secrétaire afin que ce dernier puisse lui déléguer certaines missions.</li>
             </ul>
-            <p class="text-lg text-gray-700">
+            <p>
                 Les membres du Bureau :
             </p>
-            <ul class="list-disc list-inside text-lg text-gray-700 ml-4 mb-4">
+            <ul>
                 <li>Président : DUVERGER Ulrich</li>
                 <li>Vice-Président : MURPHY Steven</li>
                 <li>Trésorier : CHIRON Théo</li>
@@ -140,27 +361,27 @@
         </section>
 
         <!-- Où nous trouver Section -->
-        <section id="location" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">Où nous trouver</h2>
-            <p class="text-lg text-gray-700">
+        <section id="location">
+            <h2>Où nous trouver</h2>
+            <p>
                 L'adresse pour nos journées Grognards et Tournois est la suivante : Maison des sociétés A, 2 place Jean Cocteau, 42153 RIORGES.
             </p>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-center">Contactez-nous</h2>
-            <p class="text-lg text-gray-700 text-center">
-                Pour plus d'informations, envoyez-nous un email à <a href="mailto:assolesgrognards@gmail.com" class="text-blue-600 hover:underline">assolesgrognards@gmail.com</a>.
+        <section id="contact">
+            <h2>Contactez-nous</h2>
+            <p>
+                Pour plus d'informations, envoyez-nous un email à <a href="mailto:assolesgrognards@gmail.com">assolesgrognards@gmail.com</a>.
             </p>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-6">
-       <div class="scroll-to-top hidden"></div>
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
+    <footer>
+          <div class="scroll-to-top hidden"></div>
+        <div>
+            <p>&copy; 2025 Association Les Grognards. Tous droits réservés. <span id="date-time"></span></p>
         </div>
     </footer>
   
