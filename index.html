@@ -5,30 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Association Les Grognards</title>
     <style>
-           .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            background-color: #00ff00;
-            color: #1a3c1a;
-            transform: scale(1.1);
-        }
-
-        .scroll-to-top::after {
-            content: "↑";
-        }
         /* Background with subtle splash effect inspired by logo */
         body {
             background: linear-gradient(135deg, #f3e7e9 0%, #e0f7fa 100%);
             background-size: cover;
             font-family: sans-serif;
+            position: relative;
         }
 
         /* Header styling with logo-inspired colors */
         header {
-            background: linear-gradient(90ded, #1e40af, #9333ea);
+            background: linear-gradient(90deg, #1e40af, #9333ea);
             border-bottom: 5px solid #000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 24px 0;
@@ -112,6 +99,7 @@
         main {
             margin: 0 auto;
             padding: 32px;
+            position: relative;
         }
 
         /* Paragraph and list styling */
@@ -164,6 +152,52 @@
             text-align: center;
         }
 
+        /* Scroll to Top styling */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #1e40af;
+            color: #e0f7fa;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #00ff00;
+            color: #1a3c1a;
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top::after {
+            content: "↑";
+            font-size: 1.5rem;
+        }
+
+        /* Decorative Space Marine Image */
+        .space-marine {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 200px;
+            max-height: 300px;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 640px) {
             nav div {
@@ -195,9 +229,35 @@
             header h1, header p {
                 margin: 0;
             }
+
+            .scroll-to-top {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .space-marine {
+                top: 10px;
+                left: 10px;
+                max-width: 150px;
+                max-height: 200px;
+            }
         }
     </style>
+    <script>
+        // Scroll to Top Functionality
+        window.onscroll = function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        };
 
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -218,7 +278,7 @@
             <a href="#bureau">Bureau</a>
             <a href="#location">Où nous trouver</a>
             <a href="#contact">Contact</a>
-                  <a href="sitelesgrognards//croisade.html">Croisade 40k</a>
+            <a href="sitelesgrognards/croisade.html" target="_blank">Croisade 40k</a>
         </div>
     </nav>
 
@@ -347,16 +407,18 @@
                 Pour plus d'informations, envoyez-nous un email à <a href="mailto:assolesgrognards@gmail.com">assolesgrognards@gmail.com</a>.
             </p>
         </section>
+
+        <!-- Decorative Space Marine Image -->
+        <img src="img/sm.png" alt="Space Marine" class="space-marine">
     </main>
 
     <!-- Footer -->
     <footer>
-          <div class="scroll-to-top hidden"></div>
+        <div class="scroll-to-top"></div>
         <div>
-            <p>&copy; 2025 Association Les Grognards. Tous droits réservés. <span id="date-time"></span></p>
+            <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
     </footer>
-  
     <script>
         // Scroll to Top Functionality
         window.onscroll = function() {
