@@ -279,7 +279,7 @@
     <!-- Navigation -->
     <nav>
         <div>
-            <a href="#home">Accueil</a>
+            <a href="index.html">Accueil</a>
             <a href="#about">À propos</a>
             <a href="#membership">Adhésion</a>
             <a href="#bureau">Bureau</a>
@@ -425,20 +425,20 @@
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
     </footer>
-  <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
+    <script>
+        // Scroll to Top Functionality
+        window.onscroll = function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        };
 
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollToTopBtn.classList.add('visible');
-        } else {
-            scrollToTopBtn.classList.remove('visible');
-        }
-    });
-
-    scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    });
-</script>
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
