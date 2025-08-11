@@ -197,15 +197,7 @@
             }
         }
     </style>
-    <script>
-        // Set the date and time to 12:21 AM CEST on Tuesday, August 12, 2025
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateTime = new Date('2025-08-12T00:21:00+02:00');
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'CET' };
-            const formattedDate = dateTime.toLocaleString('fr-FR', options).replace(':', ' à ');
-            document.getElementById('date-time').textContent = `Dernière mise à jour : ${formattedDate} CEST`;
-        });
-    </script>
+
 </head>
 <body>
     <!-- Header -->
@@ -226,7 +218,7 @@
             <a href="#bureau">Bureau</a>
             <a href="#location">Où nous trouver</a>
             <a href="#contact">Contact</a>
-                  <a href="/croisade.html">Croisade 40k</a>
+                  <a href="sitelesgrognards//croisade.html">Croisade 40k</a>
         </div>
     </nav>
 
