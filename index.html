@@ -151,20 +151,7 @@
             margin: 0;
             text-align: center;
         }
-To address your request, I'll help modify your HTML and CSS to:
 
-Replace the scroll-to-top button's arrow with an image (sm.png) while keeping the arrow functionality.
-Add social media buttons for Facebook and PayPal, positioned at the bottom of the page (in the footer for a clean look).
-
-Modifications
-1. Scroll-to-Top Button with sm.png and Arrow
-We'll replace the scroll-to-top button's content with the sm.png image and ensure the arrow functionality remains. The image will be styled to fit the button's circular design, and we'll maintain the hover effects and smooth scrolling.
-2. Adding Social Media Buttons
-We'll add Facebook and PayPal buttons in the footer, styled to match your website's aesthetic (using colors from your logo-inspired palette). These buttons will link to the respective platforms and be responsive for smaller screens.
-Updated Code
-Below is the updated portion of your code, focusing on the footer, scroll-to-top button, and the necessary CSS changes. You can replace the relevant sections in your original code with these updates.
-Updated CSS (Add/Replace in <style> Section)
-css/* Scroll to Top styling */
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
@@ -229,7 +216,10 @@ css/* Scroll to Top styling */
     background: url('img/facebook-icon.png') no-repeat center center;
     background-size: cover;
 }
-
+.social-button.discord {
+    background: url('img/discord-icon.png') no-repeat center center;
+    background-size: cover;
+}
 .social-button.paypal {
     background: url('img/paypal-icon.png') no-repeat center center;
     background-size: cover;
@@ -452,7 +442,10 @@ css/* Scroll to Top styling */
        <div class="scroll-to-top hidden"></div>
         <div class="social-buttons">
             <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook"></a>
+               <a href=" https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord"></a>
             <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal"></a>
+
+           
         </div>
         <div>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
