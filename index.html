@@ -445,39 +445,61 @@
 
     <!-- Footer -->
     <footer>
-  <div class="scroll-to-top hidden"></div>
+<!-- Bouton Scroll to Top -->
+<div class="scroll-to-top" aria-label="Remonter en haut" role="button" tabindex="0"></div>
+
 
         <div>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
     </footer>
-    <script>
-        // Scroll to Top Functionality
-        window.onscroll = function() {
-            const scrollBtn = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        };
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const plan = document.getElementById('plan');
+    const scrollBtn = document.querySelector('.scroll-to-top');
 
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    // Agrandir / réduire l'image au clic
+    plan.addEventListener('click', () => {
+      plan.classList.toggle('expanded');
+      if (plan.classList.contains('expanded')) {
+        // Désactiver scroll du body quand l'image est agrandie
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
 
-  const plan = document.getElementById('plan');
+    // Fermer l'image agrandie en cliquant en dehors
+    document.addEventListener('click', (e) => {
+      if (plan.classList.contains('expanded') && !plan.contains(e.target)) {
+        plan.classList.remove('expanded');
+        document.body.style.overflow = '';
+      }
+    });
 
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
+    // Gérer l'apparition du bouton scroll to top
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
 
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
+    // Scroll vers le haut au clic sur le bouton
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Permettre activation clavier (Enter/Espace) sur bouton scroll to top
+    scrollBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   });
 </script>
+
 </body>
 </html>
