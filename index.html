@@ -59,6 +59,10 @@
             border-bottom: 2px solid #9333ea;
             padding: 16px 0;
             top: 0;
+                position: sticky;
+    top: 0;
+    z-index: 100;  /* pour qu’il soit au-dessus du contenu */
+    width: 100%;
         }
 
         nav div {
@@ -152,11 +156,17 @@
             margin: 0;
             text-align: center;
         }
-
+.plan-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  max-height: 400px; /* ou autre hauteur max souhaitée */
+}
  /* Scroll to Top styling */
         .scroll-to-top {
-            position: fixed;
-             background: url('/img/sm.png') no-repeat center center fixed;
+    position: fixed;
+    background: url('img/sm.png') no-repeat center center fixed;
            color: #e0f7fa;
               background-color: #1e293b; /* fond sombre */
     font-size: 20px;
@@ -400,7 +410,8 @@
             <p>
                 L'adresse pour nos journées Grognards et Tournois est la suivante : Maison des sociétés A, 2 place Jean Cocteau, 42153 RIORGES.
             </p>
-             <img src="img/plan-maisonsociete.jpg" alt="Logo Grognard" class="logo">
+             <img src="img/plan-maisonsociete.jpg" alt="Plan Maison Société" class="plan-image">
+
         </section>
 
         <!-- Contact Section -->
