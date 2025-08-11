@@ -158,8 +158,7 @@
     right: 20px;
     width: 40px;
     height: 40px;
-    background: url('img/sm.png') no-repeat center center;
-    background-size: cover;
+    background-color: #1e293b;
     border-radius: 50%;
     text-align: center;
     line-height: 40px;
@@ -168,6 +167,8 @@
     visibility: hidden;
     transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
     z-index: 1000;
+    color: #e0f7fa;
+    font-size: 1.5rem;
 }
 
 .scroll-to-top.visible {
@@ -176,77 +177,36 @@
 }
 
 .scroll-to-top:hover {
-    background-color: #00ff00; /* Green hover effect */
+    background-color: #00ff00; /* vert au survol */
     transform: scale(1.1);
 }
 
-.scroll-to-top::after {
-    content: "↑"; /* Keep the arrow */
-    font-size: 1.5rem;
-    color: #e0f7fa; /* Light color for visibility */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Social media buttons */
-.social-buttons {
-    text-align: center;
-    margin-top: 16px;
-}
-
 .social-button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     margin: 0 10px;
     border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: #1e293b; /* fond sombre */
+    color: #e0f7fa;
+    font-size: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
 }
 
 .social-button:hover {
     transform: scale(1.1);
-    background-color: #facc15; /* Yellow hover effect */
-}
-
-.social-button.facebook {
-    background: url('img/facebook-icon.png') no-repeat center center;
-    background-size: cover;
-}
-.social-button.discord {
-    background: url('img/discord-icon.png') no-repeat center center;
-    background-size: cover;
-}
-.social-button.paypal {
-    background: url('img/paypal-icon.png') no-repeat center center;
-    background-size: cover;
+    background-color: #facc15; /* jaune au survol */
+    color: #1e293b; /* couleur foncée au survol */
 }
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
-    .social-buttons {
-        margin-top: 12px;
-    }
 
-    .social-button {
-        width: 32px;
-        height: 32px;
-        margin: 0 8px;
-    }
 
-    .scroll-to-top {
-        bottom: 10px;
-        right: 10px;
-        width: 32px;
-        height: 32px;
-    }
-
-    .scroll-to-top::after {
-        font-size: 1.2rem;
-    }
+  
 }
 
         /* Responsive adjustments */
@@ -439,32 +399,38 @@
 
     <!-- Footer -->
     <footer>
-       <div class="scroll-to-top hidden"></div>
-        <div class="social-buttons">
-            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook"></a>
-               <a href=" https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord"></a>
-            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal"></a>
-
-           
-        </div>
+  <div class="scroll-to-top" id="scrollToTop" title="Remonter en haut" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+<div class="social-buttons">
+    <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
+        <i class="fab fa-discord"></i>
+    </a>
+    <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
+        <i class="fab fa-paypal"></i>
+    </a>
+</div>
         <div>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
     </footer>
-    <script>
-   // Scroll to Top Functionality
-        window.onscroll = function() {
-            const scrollBtn = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        };
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
 
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+</script>
 </body>
 </html>
