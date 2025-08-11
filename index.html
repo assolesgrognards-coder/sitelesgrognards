@@ -153,34 +153,41 @@
             text-align: center;
         }
 
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: #1e293b;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
-    z-index: 1000;
-    color: #e0f7fa;
-    font-size: 1.5rem;
-}
+ /* Scroll to Top styling */
+        .scroll-to-top {
+            position: fixed;
+             background: url('/img/sm.png') no-repeat center center fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #1e40af;
+            color: #e0f7fa;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+            z-index: 1000;
+        }
 
-.scroll-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
 
-.scroll-to-top:hover {
-    background-color: #00ff00; /* vert au survol */
-    transform: scale(1.1);
-}
+        .scroll-to-top:hover {
+            background-color: #00ff00;
+            color: #1a3c1a;
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top::after {
+            content: "↑";
+            font-size: 3.5rem;
+        }
 
 .social-button {
     display: inline-flex;
@@ -400,8 +407,7 @@
 
     <!-- Footer -->
     <footer>
-  <div class="scroll-to-top" id="scrollToTop" title="Remonter en haut" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
+  <div class="scroll-to-top hidden"></div>
 </div>
 <div class="social-buttons">
     <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
