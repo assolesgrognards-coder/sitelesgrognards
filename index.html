@@ -151,48 +151,113 @@
             margin: 0;
             text-align: center;
         }
-  .space-marine {
-                top: 10px;
-                left: 10px;
-                max-width: 150px;
-                max-height: 200px;
-            }
-        /* Scroll to Top styling */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: #1e40af;
-            color: #e0f7fa;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
-            z-index: 1000;
-        }
+To address your request, I'll help modify your HTML and CSS to:
 
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+Replace the scroll-to-top button's arrow with an image (sm.png) while keeping the arrow functionality.
+Add social media buttons for Facebook and PayPal, positioned at the bottom of the page (in the footer for a clean look).
 
-        .scroll-to-top:hover {
-            background-color: #00ff00;
-            color: #1a3c1a;
-            transform: scale(1.1);
-        }
+Modifications
+1. Scroll-to-Top Button with sm.png and Arrow
+We'll replace the scroll-to-top button's content with the sm.png image and ensure the arrow functionality remains. The image will be styled to fit the button's circular design, and we'll maintain the hover effects and smooth scrolling.
+2. Adding Social Media Buttons
+We'll add Facebook and PayPal buttons in the footer, styled to match your website's aesthetic (using colors from your logo-inspired palette). These buttons will link to the respective platforms and be responsive for smaller screens.
+Updated Code
+Below is the updated portion of your code, focusing on the footer, scroll-to-top button, and the necessary CSS changes. You can replace the relevant sections in your original code with these updates.
+Updated CSS (Add/Replace in <style> Section)
+css/* Scroll to Top styling */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: url('img/sm.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+    z-index: 1000;
+}
 
-        .scroll-to-top::after {
-            content: "↑";
-            font-size: 1.5rem;
-        }
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
 
+.scroll-to-top:hover {
+    background-color: #00ff00; /* Green hover effect */
+    transform: scale(1.1);
+}
 
+.scroll-to-top::after {
+    content: "↑"; /* Keep the arrow */
+    font-size: 1.5rem;
+    color: #e0f7fa; /* Light color for visibility */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Social media buttons */
+.social-buttons {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.social-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-button:hover {
+    transform: scale(1.1);
+    background-color: #facc15; /* Yellow hover effect */
+}
+
+.social-button.facebook {
+    background: url('img/facebook-icon.png') no-repeat center center;
+    background-size: cover;
+}
+
+.social-button.paypal {
+    background: url('img/paypal-icon.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .social-buttons {
+        margin-top: 12px;
+    }
+
+    .social-button {
+        width: 32px;
+        height: 32px;
+        margin: 0 8px;
+    }
+
+    .scroll-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .scroll-to-top::after {
+        font-size: 1.2rem;
+    }
+}
 
         /* Responsive adjustments */
         @media (max-width: 640px) {
@@ -226,17 +291,7 @@
                 margin: 0;
             }
 
-            .scroll-to-top {
-                bottom: 10px;
-                right: 10px;
-            }
-
-            .space-marine {
-                top: 10px;
-                left: 10px;
-                max-width: 150px;
-                max-height: 200px;
-            }
+           
         }
     </style>
  
@@ -395,6 +450,10 @@
     <!-- Footer -->
     <footer>
        <div class="scroll-to-top hidden"></div>
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook"></a>
+            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal"></a>
+        </div>
         <div>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
