@@ -158,7 +158,7 @@
         }
 /* Style normal de l'image */
 #plan {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -168,18 +168,12 @@
 
 /* Style quand l'image est agrandie */
 #plan.expanded {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 90vw;
+  max-width: 100%;
   height: auto;
-  max-height: 90vh;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px rgba(0,0,0,0.7);
-  background: white;
-  z-index: 9999;
-  cursor: zoom-out;
-  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
  /* Scroll to Top Button - Style sobre */
