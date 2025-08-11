@@ -182,41 +182,42 @@
   border-radius: 8px;
 }
 
- /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #1a3c1a;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-            transition: all 0.3s;
-            opacity: 0;
-            visibility: hidden;
-        }
+ /* Scroll to Top Button - Style sobre */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #444;        /* gris foncé sobre */
+    color: #eee;                   /* texte clair */
+    border: 1px solid #ccc;        /* bordure fine gris clair */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: none;              /* pas d'ombre */
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
 
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .scroll-to-top:hover {
-            background-color: #00ff00;
-            color: #1a3c1a;
-            transform: scale(1.1);
-        }
+.scroll-to-top:hover {
+    background-color: #666;        /* légèrement plus clair au hover */
+    color: #fff;
+    transform: none;               /* plus de zoom */
+}
 
-        .scroll-to-top::after {
-            content: "↑";
-        }
+.scroll-to-top::after {
+    content: "↑";
+}
+
 
 .social-button {
     display: inline-flex;
