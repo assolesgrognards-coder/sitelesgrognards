@@ -156,13 +156,32 @@
             margin: 0;
             text-align: center;
         }
-.plan-image {
+/* Style normal de l'image */
+#plan {
   max-width: 100%;
   height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
   display: block;
   margin: 0 auto;
-  max-height: 400px; /* ou autre hauteur max souhaitée */
 }
+
+/* Style quand l'image est agrandie */
+#plan.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  height: auto;
+  max-height: 90vh;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  background: white;
+  z-index: 9999;
+  cursor: zoom-out;
+  border-radius: 8px;
+}
+
  /* Scroll to Top styling */
         .scroll-to-top {
     position: fixed;
@@ -410,7 +429,7 @@
             <p>
                 L'adresse pour nos journées Grognards et Tournois est la suivante : Maison des sociétés A, 2 place Jean Cocteau, 42153 RIORGES.
             </p>
-             <img src="img/plan-maisonsociete.jpg" alt="Plan Maison Société" class="plan-image">
+            <img id="plan" src="img/plan-maisonsociete.jpg" alt="Plan de la Maison des Sociétés">
 
         </section>
 
@@ -446,6 +465,19 @@
         document.querySelector('.scroll-to-top').addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-    </script>
+<script>
+  const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
+</script>
 </body>
 </html>
