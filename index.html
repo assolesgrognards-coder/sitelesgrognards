@@ -16,13 +16,31 @@
             position: relative;
             margin: 0;
         }
-.center{
-  justify-content: center; /* Centrage horizontal */
-  align-items: center; /* Centrage vertical */
- margin-left: auto;
-  margin-right: auto;
-  width: 100%; /* Ou toute autre valeur selon la taille désirée */
-}
+        .center {
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center; /* Centrage vertical */
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%; /* Ou toute autre valeur selon la taille désirée */
+            flex-direction: column;
+        }
+        .center ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .center ul li {
+            margin: 8px 0;
+        }
+        .center ul li a {
+            text-decoration: none; /* Remove underline from partner links */
+            color: #e0f7fa; /* Default color for partner links */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+        .center ul li a:hover {
+            color: #facc15; /* Yellow color on hover for partner links */
+        }
         /* Header styling with logo-inspired colors */
         header {
             background: linear-gradient(90deg, #1e40af, #9333ea);
@@ -55,8 +73,8 @@
 
         /* Logo styling */
         header img.logo {
-            max-width: 150px;
-            max-height: 100px;
+            max-width: 200px; /* Increased logo size */
+            max-height: 150px; /* Increased logo size */
             vertical-align: middle;
             margin-right: 20px;
         }
@@ -179,7 +197,7 @@
 
         /* Style normal de l'image */
         #plan {
-            max-width: 30%;
+            max-width:isle de france
             height: auto;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -232,16 +250,16 @@
             content: "↑";
             color: #eee;
         }
-.logo-container {
-    display: fixed;
-    justify-content: center;
-    align-items: center;
-    height: 100px; /* ou une autre hauteur qui convient */
-}
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px; /* Adjusted for larger logo */
+        }
         .social-button {
             display: inline-flex;
             justify-content: center;
-align-items: center;
+            align-items: center;
             width: 40px;
             height: 40px;
             margin: 0 10px;
@@ -278,8 +296,7 @@ align-items: center;
                 left: 0;
                 right: 0;
                 z-index: 99;
-                transition: transform 0.3s ease;
-                transform: translateY(-100%);
+                transform: translateY(0); /* Ensure menu is visible on mobile */
             }
 
             nav .nav-links.active {
@@ -339,38 +356,15 @@ align-items: center;
         // Toggle mobile menu
         $(document).ready(function() {
             $('.hamburger').click(function() {
-                $('.nav-links')._toggleClass('active');
+                $('.nav-links').toggleClass('active'); // Fixed toggleClass method
             });
-        });
 
-        // Scroll to Top Functionality
-        window.onscroll = function() {
-            const scrollBtn = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
+            // Ensure nav-links are visible on mobile
+            if (isMobile()) {
+                $('.nav-links').css('display', 'none');
+                $('.nav-links.active').css('display', 'flex');
             }
-        };
-
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        // Image toggle for #plan
-        const plan = document.getElementById('plan');
-        if (plan) {
-            plan.addEventListener('click', () => {
-                plan.classList.toggle('expanded');
-            });
-
-            // Close with Escape key
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-                    plan.classList.remove('expanded');
-                }
-            });
-        }
     </script>
 </head>
 <body>
@@ -387,13 +381,11 @@ align-items: center;
                 <i class="fab fa-paypal"></i>
             </a>
         </div>
-         <div class="logo-container">
-                   <a href="index.html" onclick="loadPage('index.html'); return false;">
-            <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
-        </a>
-           
+        <div class="logo-container">
+            <a href="index.html" onclick="loadPage('index.html'); return false;">
+                <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
+            </a>
         </div>
-
     </header>
 
     <!-- Navigation -->
@@ -405,7 +397,7 @@ align-items: center;
             <a href="bureau.html" onclick="loadPage('bureau.html'); return false;">Bureau</a>
             <a href="lieu.html" onclick="loadPage('lieu.html'); return false;">Où nous trouver</a>
             <a href="contact.html" onclick="loadPage('contact.html'); return false;">Contact</a>
-           <a href="croisade.html" target="_blank">Croisade 40k</a>
+            <a href="croisade.html" target="_blank">Croisade 40k</a>
         </div>
     </nav>
 
@@ -443,14 +435,54 @@ align-items: center;
         <div class="center">
             <p>Nos Partenaires :</p>
             <ul>
-                
-           <li> <a href="https://www.facebook.com/replaygames.shop" target="_blank">Re-Play Games</a></li>
-              <li> <a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank">Ducs de Gascogne</a></li>
-            <li><a href="https://www.riorges.fr/" target="_blank">Mairie de Riorges</a></li>
-               <li> <a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
-                 </ul>
+                <li><a href="https://www.facebook.com/replaygames.shop" target="_blank">Re-Play Games</a></li>
+                <li><a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank">Ducs de Gascogne</a></li>
+                <li><a href="https://www.riorges.fr/" target="_blank">Mairie de Riorges</a></li>
+                <li><a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
+            </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
+         <script>
+        // Scroll to Top Functionality
+        window.onscroll = function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        };
+
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+  const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
+
+          const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
+</script>
     </footer>
 </body>
 </html>
