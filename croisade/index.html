@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+       <link rel="icon" href="img/favicon.png">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Campagne Croisade Les Grognards</title>
+
+
+
+    <style>
+        body {
+            background: url('./img/background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .terminal {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 5px solid #8b4513;
+            border-radius: 10px;
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .terminal-header {
+            text-align: center;
+            font-size: 1.2em;
+            color: #d4a017;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #d4a017;
+            padding-bottom: 10px;
+            text-shadow: 0 0 5px #d4a017;
+        }
+
+        h1, h2, h3 {
+            color: #d4a017;
+            text-transform: uppercase;
+            border-bottom: 1px dashed #8b4513;
+            padding-bottom: 5px;
+            text-shadow: 0 0 10px #d4a017;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        p, ul, li {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        li::before {
+            content: "> ";
+            color: #d4a017;
+        }
+
+        .highlight {
+            background-color: rgba(139, 69, 19, 0.3);
+            padding: 10px;
+            border-left: 4px solid #d4a017;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: rgba(10, 10, 10, 0.7);
+        }
+
+        th, td {
+            border: 1px solid #8b4513;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(139, 69, 19, 0.5);
+            color: #d4a017;
+        }
+
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Logo Styling - Monochrome Green Filter for Old CRT */
+        .logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+            padding: 5px;
+            background: rgba(0, 10, 0, 0.8);
+            filter: grayscale(100%) sepia(100%) hue-rotate(80deg); /* Monochrome green CRT effect */
+        }
+
+        /* Enhanced Menu Buttons */
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #1a3c1a;
+            color: #00ff00;
+            text-decoration: none;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+        }
+
+        nav a:hover {
+            background-color: #00ff00;
+            color: #1a3c1a;
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a3c1a;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #00ff00;
+            color: #1a3c1a;
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top::after {
+            content: "↑";
+        }
+@media screen and (max-width: 600px) {
+    body {
+        padding: 5px;
+        line-height: 1.3;
+        font-size: 12px;
+    }
+
+    .terminal {
+        max-width: 100%;
+        padding: 5px;
+        border-width: 2px;
+        border-radius: 5px;
+        box-shadow: 0 0 6px rgba(139, 69, 19, 0.4);
+    }
+
+    .terminal-header {
+        font-size: 0.9em;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+
+    h2, h3 {
+        font-size: 1em;
+        padding-bottom: 2px;
+    }
+
+    p, ul, li {
+        margin: 4px 0;
+    }
+
+    ul {
+        padding-left: 10px;
+    }
+
+    .highlight {
+        padding: 4px;
+        margin: 4px 0;
+        border-left-width: 3px;
+    }
+
+    th, td {
+        padding: 3px 5px;
+        font-size: 11px;
+    }
+
+    .logo {
+        max-width: 100px;
+        margin: 8px auto;
+        padding: 2px;
+        border-width: 1.5px;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.4);
+    }
+
+    nav a {
+        padding: 4px 8px;
+        margin: 0 4px;
+        font-size: 0.85em;
+        border-width: 1.5px;
+        border-radius: 4px;
+        box-shadow: 0 0 4px rgba(0, 255, 0, 0.3);
+    }
+
+    .scroll-to-top {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px;
+        bottom: 12px;
+        right: 12px;
+        border-width: 1.5px;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.4);
+    }
+}
+    </style>
+</head>
+    <body>
+        <div class="terminal">
+          <div class="terminal-header">
+            > GROGNARDS-TEC TERMINAL v3.7 - WARHAMMER CRUSADE ENGINE PROTOCOL<br>
+                
+      <img src="img/grognardvert.png" alt="Logo Grognard" class="logo">   </div>
+        <div class="terminal-header">
+            === Campagne Croisade === <span class="blink">_</span>
+        </div>
+        <nav>
+            <a href="index.html" onclick="loadPage('index.html'); toggleMenu(); return false;">> ACCESSING: CROISADE 2025 - L'AMAS DE VANTAROTH <span class="blink">_</span></a><br>
+                      <a href="regulatum.html" onclick="loadPage('index.html'); toggleMenu(); return false;">> ACCESSING: EVENT - CHUTE DE RO’ANN PRIMUS <span class="blink">_</span></a><br>
+                      <a href="roann.html" onclick="loadPage('index.html'); toggleMenu(); return false;">> ACCESSING: FAQ - REGULATUM CRUSADIS <span class="blink">_</span></a>
+
+        </nav>
+  <div id="contenu-principal">
+
+        <section id="regles">
+            <h1>Règles Croisade</h1>
+            <h1>L'AMAS DE VANTAROTH: LA LUEUR DANS LES TÉNÈBRES</h1>
+        <p>Aux confins du Segmentum Obscurus, là où les étoiles semblent vaciller sous le poids des éons, s’étend l’Amas de Vantaroth. Cette région vaste et énigmatique, autrefois témoin des triomphes de la Grande Croisade, est aujourd’hui un champ de bataille où s’entrechoquent les ambitions de l’Imperium, les appétits des xenos, et les machinations insidieuses du Chaos.</p>
+        <p>Sorrana, la planète-capitale, demeure un bastion de la foi et de la discipline, un phare brillant dans les ténèbres environnantes. Sous la vigilance de la Maisonnée Eyrobius et de ses Chevaliers Impériaux, elle résiste aux assauts incessants qui menacent son autorité. Autour d’elle, les vestiges d’un glorieux passé s’effritent : Pierre Morte, monde ravagé par l’Hérésie d’Horus, n’est plus qu’une ombre de sa splendeur, tandis que les ruines cristallines de l’Elyseum Stalle murmurent les secrets d’un empire eldar déchu.</p>
+        <p>Mais l’Amas n’est pas seulement le musée d’anciennes catastrophes. Il est aussi le berceau de nouvelles horreurs. Les Nécrons, endormis depuis des millénaires, s’éveillent dans le Système Vermillon, leurs légions métalliques prêtes à répandre la mort froide sur tout ce qu’elles touchent. Dans l’Oeil de Gork, des milliers de Waaagh! grondent, leurs cris résonnant jusqu’aux mondes voisins. Et dans les jungles étouffantes d’Hydoria, la Vrille Ceto Minor des Tyranides transforme des mondes fertiles en vastes déserts de chair dévorée et d’ossements brisés.</p>
+        <p>L’Imperium ne reste pas sans défense. Des héros surgissent des ténèbres. Les Stormbearers et les Lions de l’Apocalypse, puissants chapitres de l’Adeptus Astartes, s’abattent comme des tempêtes sur les ennemis de l’Empereur. Sur les lunes gelées et les cathédrales gothiques de Thalium Oscura, les flammes des sœurs de bataille éclairent les ténèbres d’une guerre sainte sans fin. Et dans les couloirs des bastions spacieux, l’Ecclésiarchie arme de nouvelles croisades, jurant de purifier ces terres jusqu’au dernier souffle.</p>
+        <p>Mais l’Amas de Vantaroth est une énigme. Ses systèmes cachent des merveilles oubliées et des horreurs indicibles. Dans le Nexus Luminis, des étoiles bleues chantent aux âmes des psykers, tandis que sur Zerathis Void, un portail eldar gronde d’une puissance ancienne et incontrôlée. Chaque planète, chaque lune, chaque ceinture d’astéroïdes est un pari risqué, un champ de bataille où la survie se gagne au prix du sang.</p>
+        <p>Ainsi, l’Amas de Vantaroth demeure en équilibre fragile, une lutte incessante entre la lumière vacillante de l’Humanité et les ombres qui cherchent à l’éteindre. Ici, les héros se forgent dans la guerre, les légendes naissent dans le chaos, et les destins de mondes entiers se jouent dans le fracas des armes et des prières. Rejoignez le combat, car dans l’Amas de Vantaroth, seule la foi peut porter l’acier.</p>
+
+        <h2>RÈGLES DE CROISADE</h2>
+        <p>Chaque joueur peut jouer plusieurs forces mais chaque force doit avoir son propre Ordre de Bataille et aura ses propres points territoriaux.</p>
+        <ul>
+            <li>Chaque ordre de bataille commence à 1500 pts</li>
+            <li>Chaque ordre de bataille commence avec 6 pts de réquisition</li>
+            <li>Tout joueur commence avec un ordre de bataille vierge</li>
+            <li>Les héros épiques sont autorisés</li>
+            <li>Les unités “homebrew” ne sont pas autorisées sans discussion et vote du groupe de joueurs</li>
+            <li>Les parties “mixtes” (2v2 etc.) mais il faut se référer au tableau Page 2</li>
+        </ul>
+
+        <h2>ALLIANCES ET ALLIÉS</h2>
+        <p>Les alliances sont créées pour une pléthore de raisons, des accords formels, face à un ennemi commun... mais il y a autant de niveaux de confiances qu’il y a d’ennemis au 41e millénaire.</p>
+        <h3>Niveaux D’alliances</h3>
+        <div class="highlight">
+            <strong>Alliés de Circonstance :</strong> Les unités d’une ou plusieurs armées de ce niveau d’alliance ne bénéficient jamais d’une aptitude ou d’un aura d’une unité alliée. De plus une figurine ne peut pas se déplacer à moins de 1” d’une figurine alliée.
+            <br><br>
+            Les unités d’une armée alliés de Circonstance suivent la règle supplémentaire : Gardez un œil ouvert!
+            <br><br>
+            <strong>Gardez un œil ouvert :</strong> Au début de votre phase de commandement, si une de vos unités se trouve à 6” ou moins d’une unité Alliés de Circonstance, elle doit passer un test d’ébranlement, ignorant toute aptitude ou règle qui modifie, annule ou ignore les tests d’ébranlement.
+            <br><br>
+            <strong>L’heure de l’Apocalypse :</strong> Les unités d’une armée L’heure de l’Apocalypse suivent les même règles que les unités d’une armée alliés de Circonstance mais avec une portée de 12”
+            <br><br>
+            N.B. les alliances d’un même détachement (Ex: Agents de l’Impérium) ne sont pas affectées par les règles de d’alliances.
+        </div>
+        <p><strong>Imperium :</strong> Adeptus Custodes, Agents de l’Imperium, Astra Militarum, Adepta Soritas, Chevaliers Impériaux</p>
+        <p><strong>Adeptus Astartes :</strong> Chapitres qui suivent le Codex Astartes sans supplément</p>
+        <p><strong>Chaos :</strong> CSM, Chevaliers Renégats, Death Guard, World Eaters, Thousand Sons, Emperor’s Children.</p>
+
+        <h2>LA CONQUÊTE DE VANTAROTH</h2>
+        <h3>TERRITOIRES</h3>
+        <p>Chaque armée de croisade possède son système planétaire et 8 points territoriaux (représentant 8 corps célestes du système en question).</p>
+        <p>Lorsque vous préparez une bataille en suivant « Jouer une mission de croisade... » entre les étapes 2 et 3 vous devez choisir la planète sur laquelle vous combattez. La bataille a toujours lieu sur un point territorial que possède le défenseur. Le vainqueur de la bataille gagne le point territorial mis en jeu lors de la bataille.</p>
+
+        <h3>THÉÂTRES DE GUERRE</h3>
+        <p>Chaque planète présente son propre théâtre de guerre. Après avoir choisi le territoire, lancez un D6. Sur un résultat de 1-3 le théâtre de guerre est celui de Croisade : Guerre Tyrannique ; sur un résultat de 4-6 il s’agit d’un théâtre de guerre de Croisade : Pariah Nexus.</p>
+        <p>Ainsi, vous choisissez une mission du théâtre correspondant et à l’issue d’une bataille, vous pouvez uniquement choisir les améliorations du théâtre de guerre de la planète (ou celles de votre codex, évidemment).</p>
+
+        <h3>LES SYSTÈMES DU SECTEUR VANTAROTH</h3>
+        <p>[Contenu non détaillé dans le PDF fourni]</p>
+
+        <h3>SÉQUELLES</h3>
+        <p>Vous pouvez utiliser les séquelles de votre codex ou celles du livre de règle de base. Toutefois, toute amélioration, honneur, relique etc. qui permet de réussir automatiquement ou d’ignorer les test de hors combat est limité à 1 par 1000 pts d’ordre de bataille.</p>
+        <p>Exemple : votre ordre de bataille est limité à 2500 points vous pouvez uniquement avoir 2 unités qui peuvent ignorer ou réussir automatiquement les test de hors combat.</p>
+
+        <h3>LES MISSIONS</h3>
+        <p>Vous pouvez utiliser les postures stratégiques pour les missions même celles de la Guerre Tyrannique. Les avantages des missions GT sont ci-dessous :</p>
+        <h4>Tableau A</h4>
+        <table>
+            <tr><th>Résultat</th><th>Avantage</th></tr>
+            <tr><td>1</td><td>Avant la bataille, choisissez un objectif sur le champ de bataille. Jusqu’à la fin de la bataille, ce pion d’objectif n’est pas affecté par les règles de Risque Bactériologique</td></tr>
+            <tr><td>2</td><td>Une fois par bataille, au début du round, vous pouvez ajouter 1 au résultat des dés pour la règle Localiser l’Entrée.</td></tr>
+            <tr><td>3</td><td>Avant la bataille, sélectionnez une unité de votre armée de Croisade. Jusqu’à la fin de la bataille, cette unité gagne la règle Infiltrateurs.</td></tr>
+            <tr><td>4</td><td>Une fois par bataille au début de votre phase de tir, vous pouvez sélectionner un pion d’objectif que vous contrôlez. Jusqu’au début de votre prochaine phase de tir, ce pion d'objectif peut être utilisé pour la règle extraire un échantillon sans empêcher vos unités de tirer ou déclarer une charge.</td></tr>
+            <tr><td>5</td><td>Avant la bataille, sélectionnez une unité de votre armée de Croisade. Jusqu’à la fin de la bataille, cette unité gagne la règle Infiltrateurs mais ne peut pas être déployée à portée d’un pion d’objectif.</td></tr>
+            <tr><td>6</td><td>Avant la bataille, choisissez un objectif sur le champ de bataille. Jusqu’à la fin de la bataille, ce pion d’objectif n’est pas affecté par les règles de Nodules Neuro Synaptiques</td></tr>
+        </table>
+        <h4>Tableau B</h4>
+        <table>
+            <tr><th>Résultat</th><th>Avantage</th></tr>
+            <tr><td>1</td><td>Une fois par bataille, au début du round, vous pouvez choisir un pion d’objectif supplémentaire à enlever ou retourner un pion d’objectif enlevé ultérieurement.</td></tr>
+            <tr><td>2</td><td>Si vous êtes l’attaquant, vous pouvez avancer votre zone de déploiement de 3”, si vous êtes le défenseur, vous pouvez réduire votre zone de déploiement de 3”.</td></tr>
+            <tr><td>3</td><td>Avant la bataille, sélectionnez une unité de votre armée de Croisade. Jusqu’à la fin de la bataille, cette unité a la règle Eclaireurs 9”.</td></tr>
+            <tr><td>4</td><td>Une fois par bataille au début de votre phase de tir, vous pouvez sélectionner un pion d’objectif que vous contrôlez. Jusqu’au début de votre prochaine phase de tir, ce pion d'objectif peut être utilisé pour la règle EXPLOSIVES sans empêcher vos unités de tirer ou déclarer une charge.</td></tr>
+            <tr><td>5</td><td>Une fois par bataille, vous pouvez cibler une unité avec le stratagème Intervention Héroïque pour 0pc</td></tr>
+        </table>
+        <h4>Tableau C</h4>
+        <table>
+            <tr><th>Résultat</th><th>Avantage</th></tr>
+            <tr><td>1</td><td>Une fois par bataille, au début du round, choisissez une unité et augmentez la caractéristique de OC de 1.</td></tr>
+            <tr><td>2</td><td>Proposition alternative une fois par bataille si votre Champion n’est pas au Coeur de la Bataille, il prend D3 mortelles au lieu de D6</td></tr>
+            <tr><td>3</td><td>Au début de votre première phase de commandement, 1d6 unités ennemies positionnées sur le champ de bataille doivent faire un test d’ébranlement.</td></tr>
+        </table>
+
+        <h2>RÉQUISITIONS DE L’AMAS DE VANTAROTH</h2>
+        <p>Les réquisitions suivantes sont utilisables en plus de celles que vous pouvez trouver dans les œuvres diverses à votre disposition.</p>
+        <ul>
+            <li><strong>0-2 Renforts Légendaires : 1-10 PR</strong><br>Parfois, une force militaire fait appel à des soldats expérimentés afin d’apporter leur expérience militaire acquise de longue lutte.<br>Achetez cette réquisition avant ou après une bataille. Vous pouvez inclure une unité d’un ancien ordre de bataille (tant que l’unité choisie est de la même faction que votre ordre de bataille actuel).<br>Cette réquisition coûte 1PR et 1PR supplémentaire pour chaque point de croisade de l’unité choisie. Les Unités Titanesques coûtent 2 PR par amélioration gagnées et -1 PR par séquelle avec un maximum de 10 PR<br>ex: je choisis une unité qui a 3 points de croisade, cette unité coûte 4 RP.<br>Vous ne pouvez pas choisir d’unité possédant une relique de croisade déjà présente dans votre ordre de bataille.</li>
+            <li><strong>Relique sacrée: 1PR</strong><br>Certaines armes ou artéfacts au 42ème millénaire sont confiées à des forces armées pour mieux guider, mieux purger, mieux combattre, mieux éradiquer, mieux faire quoi.<br>Achetez cette réquisition lorsque vous créez votre Ordre de Bataille.<br>Vous pouvez ajouter à votre reliquaire une relique de croisade d’un ancien ordre de bataille. Vous pouvez ensuite assigner cette relique à un personnage de votre ordre de bataille.<br>L’assignation d’une relique de croisade avec cette réquisition suit les mêmes règles écrites dans les règles de base de croisade.</li>
+            <li><strong>Reformation tactique: 0/ 3PR</strong><br>Même les plus féroces combattants reconnaissent le besoin de changer de tactique face à un ennemi ardent.<br>Acheter cette réquisition avant votre prochaine bataille. Vous pouvez ainsi changer de détachement pour votre ordre de bataille. Cette réquisition est gratuite lors de la sortie du codex de votre faction si cette dernière a commencé la Croisade avec l’index V10.</li>
+            <li><strong>Réarmement Tactique: 1PR</strong><br>Les meilleurs tacticiens choisissent toujours l’outil le mieux adapté à la mission.<br>Acheter cette réquisition avant votre prochaine bataille. Vous pouvez changer de datasheet pour votre Seigneur de Guerre. C’est-à-dire que vous pouvez choisir un datasheet pour le même type de personnage qui a un équipement différent tout en gardant les traits, honneurs et séquelles de votre personnage. Ex: Capitaine en armure phobos, je peux dépenser 1PR et choisir le datasheet du capitaine en armure terminator.</li>
+        </ul>
+
+        <h2>FAQ - JANVIER 2025</h2>
+        <ul>
+            <li><strong>Peut-on changer de détachement ?</strong><br>Tout d’abord, le détachement est irréversible dans les règles de base.<br>Néanmoins, à la sortie d’un codex uniquement, le consensus des Grognards est de permettre un changement de détachement gratuitement.<br>De manière collégiale, le Conseil de Ninkasaea a approuvé la mesure suivante : on peut changer, entre deux batailles, son détachement pour un coût de 3 PR.</li>
+            <li><strong>Est ce que la limite d'une unité (3 max sauf ligne et transport) s'applique à l'ordre de bataille ?</strong><br>Oui, on ne peut pas avoir plus de 3 exemplaires de chaque unité non unique, sauf les unités lignes et transports assignés qui peuvent être présents 6 fois chacun.</li>
+            <li><strong>“j'aurais bien pris un assassin mais ceux sont des personnages épiques (bien que non-nommés), j'ai le droit d'en avoir en Croisade ?”</strong><br>On peut prendre un personnage épique, nommé ou non, dans une Croisade. Cependant ce dernier ne bénéficiera d’aucune règle de Croisade, ne gagnera pas d’expériences, n’aura pas de séquelles et ne pourra porter de relique de croisade.</li>
+            <li><strong>Comment augmenter mon Ordre de Croisade ?</strong><br>1 PR permet de sélectionner 200pts supplémentaire pour l’Ordre de Bataille.</li>
+            <li><strong>Si je joue des parties de croisade contre mon fils, est-ce que je peux bénéficier des avantages ou séquelles acquisent pour notre croisade associative !?</strong><br>Oui, la croisade n’est pas exclusive dans la mesure bien entendu où vous jouez des scénarios de croisade et faites vos jets de séquelles et de progression comme d’habitude.</li>
+            <li><strong>Puis-je ajuster les options d’une unité pour diminuer son coût dans ma liste de Bataille ?</strong><br>Non, une unité doit être jouée avec les effectifs, les optimisations et les options présentes dans l’Ordre de Croisade.<br>Exemple : les Hommes de Mains de l’Inquisition se jouent par 4 mais peuvent recevoir les renforts d’un Mystique, d’un Possédé, d’un Serviteur d’Armes et/ou d’un Spécialiste Jokaero qui coûte chacun 10pts. J’ai dans mon Ordre de Croisade une unité d’Hommes de mains de l’Inquisition de 4+4 figurines qui vaut 80 pts. Je ne peux pas aligner seulement 4 hommes de mains de l’Inquisition en virant les spéciaux pour une bataille.</li>
+            <li><strong>Combien de PR puis-je avoir au maximum ?</strong><br>10 PR maximum par joueur.</li>
+            <li><strong>Peut-on enlever une unité de son Ordre de Croisade ?</strong><br>Oui, cela ne coûte aucun PR mais l’unité perd tous ses honneurs et toutes ses séquelles et ne pourra être recrutée à nouveau avec ses honneurs et ses séquelles mais en version de base. Si vous avez utilisé des points de réquisition sur cette unité, ces points de réquisition sont également perdus.</li>
+            <li><strong>Que se passe-t-il si on retire son Seigneur de Guerre de l’ordre de Croisade ? Doit on ajouter un nouveau personnage ou en choisir un parmi les héros déjà présents dans l’Ordre de Croisade ?</strong><br>A la perte de son Seigneur de Guerre, le joueur peut librement choisir le nouveau (en recrutant un nouveau personnage ou en nommant un des héros présents Seigneur de Guerre).</li>
+            <li><strong>Puis-je réduire temporairement le nombre de figurines dans une unité de mon Ordre de Bataille?</strong><br>Il n’est pas possible de réduire les effectifs d’une unité sans la retirer de son ordre de Croisade.</li>
+            <li><strong>Comment joue-t-on les ruines?</strong><br>Pour toute bataille, nous considérons le rez-de-chaussée occultant (bloquant la ligne de vue) pour une Ruine. Pour les autres éléments de décors et terrain, les adversaires doivent se mettre d’accord sur leurs règles avant le déploiement.</li>
+            <li><strong>Dois-je présenter toutes les règles de mes unités à mon adversaire? Y compris les traits et honneurs de batailles ainsi que les séquelles?</strong><br>Oui, il est formellement interdit de cacher ou omettre des règles d’unité de votre adversaire. Le fair-play règne surtout dans notre croisade.<br>Il vous est fortement conseillé de présenter l’unité que vous déployez au moment du déploiement. Pour les unités commençant en réserve, présentez les unités au moment où vous déclarez qu’elles sont en réserve.</li>
+            <li><strong>Les unités Gardes du Corps et leur Meneur gagnent-elles de l’expérience ?</strong><br>Oui mais, hormis le point d’expérience pour participer à la bataille, tout autre gain de XP doit être donné à l’un ou à l’autre.</li>
+            <li><strong>Dois-je attendre que mes personnages passent un rang pour leur donner une optimisation ou je peux déjà le faire?</strong><br>Lorsque vous ajoutez un personnage à votre Ordre de Bataille, vous pouvez dépensez 1PR pour lui accorder une optimisation. Ensuite, vous devez attendre qu’une unité PERSONNAGE gagne un rang pour pouvoir accorder une optimisation.</li>
+            <li><strong>Si une arme a un profil de mêlée et de tir, puis-je améliorer indépendamment le profil de mêlée et de tir ?</strong><br>Non, c’est une amélioration d’arme et pas de profil. Donc une seule amélioration qui s’appliquera à tous les profils de l’arme, le tout pour un seul honneur de bataille.</li>
+            <li><strong>Boarding Action : peut-on scinder des unités déjà présentes pour participer à une partie de Boarding Action ?</strong><br>Oui pour se référer aux restrictions de Boarding Action, vous pouvez scinder une unité de votre Ordre de Croisade, lui enlever les options interdites. Les unités scindées ne gagnent que la moitié de l’XP de la partie (arrondie à l’inférieur, avec un minimum de 1).</li>
+            <li><strong>Boarding Action: Que se passe-t-il pour un personnage ayant une optimisation d’armée ?</strong><br>Si une de vos personnages possède une optimisation, vous devez la remplacer par une optimisation Boarding Action pour la partie.</li>
+            <li><strong>Une unité, peut-elle arriver par Frappe En Profondeur ou de Réserves au premier Round de Bataille?</strong><br>Une unité peut seulement arriver sur le champ de bataille au premier round de bataille si elle a été déployée sur le champ de bataille. Si une unité a été placée en Réserves ou Réserves Stratégique à l’étape 11- déclaration des formations de bataille elle ne pourra arriver qu’à partir du 2eme Round de Bataille.</li>
+            <li><strong>Si une de mes unités gagne Eclaireurs X”, suis-je limité par sa caractéristique de Mouvement?</strong><br>Non, selon le dernier commentaire par GW, une unité n’est pas limitée par sa caractéristique de Mouvement pour un mouvement Éclaireur et donc peut se déplacer à la distance donnée par la règle Eclaireurs.</li>
+            <li><strong>Si une unité de votre armée a une règle qui lui permet d'être placée sur le champ de bataille depuis les Réserves au premier round de bataille, est-ce que cette unité peut être placée à l'étape des Renforts de la phase de Mouvement adverse, à l'aide du Stratagème Arrivée Précipitée ?</strong><br>Oui, à moins que cette règle stipule explicitement qu'elle s'applique à votre phase de Mouvement, auquel cas c'est interdit par les restrictions des règles hors phase.</li>
+            <li><strong>Quid une unité détruite par un véhicule qui explose suite à une destruction néfaste, qui prend l’XP?</strong><br>Si une unité ennemie est détruite par une Destruction Néfaste, l’unité qui explose ajoute 1 à son compte d’unités détruites par arme de tir</li>
+            <li><strong>Puis-je utiliser un détachement de Grotmas 2024 (calendrier de l'avent GW)?</strong><br>Oui, vous pouvez utiliser le détachement Grotmas de votre faction</li>
+        </ul>
+
+        <h2>RANGS D’EXPÉRIENCE</h2>
+        <table>
+            <tr><th>XP</th><th>Rang</th></tr>
+            <tr><td>0-5</td><td>Paré au combat</td></tr>
+            <tr><td>6-15</td><td>Éprouvés</td></tr>
+            <tr><td>16-30</td><td>Vétérans</td></tr>
+            <tr><td>31-50</td><td>Héroïques</td></tr>
+            <tr><td>51-75</td><td>Légendaires</td></tr>
+            <tr><td>76-105</td><td>Épique</td></tr>
+            <tr><td>106-140</td><td>Conquérant</td></tr>
+            <tr><td>141-180</td><td>Guerrier Suprême</td></tr>
+            <tr><td>181-225</td><td>Mythe parmi les hommes</td></tr>
+            <tr><td>226-275</td><td>Demi-dieu</td></tr>
+            <tr><td>276-330</td><td>Divinité</td></tr>
+            <tr><td>331-449</td><td>Titan</td></tr>
+            <tr><td>450+</td><td>Dieu-Empereur</td></tr>
+        </table>
+        </section>
+
+    </div>
+      </div>
+      
+    <footer>
+        <div class="scroll-to-top"></div>
+           <div class="terminal-header">
+            > END OF TRANSMISSION - VAULT-TEC PROTOCOL TERMINATED <span class="blink">_</span>
+        </div>
+    </footer>
+
+       <script>
+        // Check if the user is on a mobile device
+        function isMobile() {
+            return window.innerWidth <= 640;
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const nav = document.getElementById('formSection');
+            const navLinks = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        // Adjust menu visibility based on screen size
+        function adjustMenuVisibility() {
+            const nav = document.getElementById('formSection');
+            if (isMobile()) {
+                nav.classList.remove('active');
+                document.querySelector('.nav-links').classList.remove('active');
+            } else {
+                nav.classList.add('active');
+                document.querySelector('.nav-links').classList.add('active');
+            }
+        }
+
+        // Load page content via AJAX
+        function loadPage(page) {
+            $("#contenu-principal").fadeOut(200, function () {
+                $(this).load(page + " #contenu-principal", function (response, status, xhr) {
+                    if (status === "error") {
+                        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
+                    }
+                    $(this).fadeIn(200);
+                    initializePlan(); // Re-initialize plan image event listeners
+                });
+            });
+        }
+
+        // Initialize plan image functionality
+        function initializePlan() {
+            const plan = document.getElementById('plan');
+            if (plan) {
+                plan.addEventListener('click', () => {
+                    plan.classList.toggle('expanded');
+                });
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+                        plan.classList.remove('expanded');
+                    }
+                });
+            }
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle scroll-to-top button visibility
+        window.onscroll = function () {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        };
+
+        // Initialize event listeners
+        document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
+        $(window).on('resize', adjustMenuVisibility);
+        adjustMenuVisibility();
+        initializePlan();
+    </script>
+</body>
+</html>
