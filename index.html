@@ -337,34 +337,43 @@
             return window.innerWidth <= 640;
         }
 
-        // Load page content with jQuery
-        function loadPage(page) {
-            $("#contenu-principal").fadeOut(200, function () {
-                $(this).load(page + " #contenu-principal", function (response, status, xhr) {
-                    if (status === "error") {
-                        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
-                    }
-                    $(this).fadeIn(200);
-                    // Close mobile menu after clicking a link
+   // Fonction AJAX pour charger le contenu des pages
+function loadPage(page) {
+  $("#contenu-principal").fadeOut(200, function () {
+    $(this).load(page + " #contenu-principal", function (response, status, xhr) {
+      if (status === "error") {
+        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
+        return;
+      }
+
+      $(this).fadeIn(200);
+          // Gestion du bouton de retour en haut et du menu
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+       
+            window.onscroll = function() {
+                if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+                    scrollToTopBtn.style.display = "block";
+                     
                     if (isMobile()) {
-                        $('.nav-links').removeClass('active');
+                        menu.style.display = "none";
+                    } else {
+                        menu.style.display = "block";
                     }
-                });
-            });
-        }
-
-        // Toggle mobile menu
-        $(document).ready(function() {
-            $('.hamburger').click(function() {
-                $('.nav-links').toggleClass('active'); // Fixed toggleClass method
-            });
-
-            // Ensure nav-links are visible on mobile
+                } else {
+                    scrollToTopBtn.style.display = "none";
+               
+                }
+            };
+      adjustMenuVisibility();
+  // Ajuster la visibilité du menu selon la taille de l'écran
+        function adjustMenuVisibility() {
+            const menu = $("#formSection");
             if (isMobile()) {
-                $('.nav-links').css('display', 'none');
-                $('.nav-links.active').css('display', 'flex');
+                menu.hide();
+            } else {
+                menu.show();
             }
-        });
+        }
     </script>
 </head>
 <body>
