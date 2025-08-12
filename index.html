@@ -332,49 +332,46 @@
         }
     </style>
     <script>
-        // Function to check if the screen is mobile
-        function isMobile() {
-            return window.innerWidth <= 640;
-        }
-
-   // Fonction AJAX pour charger le contenu des pages
-function loadPage(page) {
-  $("#contenu-principal").fadeOut(200, function () {
-    $(this).load(page + " #contenu-principal", function (response, status, xhr) {
-      if (status === "error") {
-        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
-        return;
-      }
-
-      $(this).fadeIn(200);
-          // Gestion du bouton de retour en haut et du menu
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-       
-            window.onscroll = function() {
-                if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-                    scrollToTopBtn.style.display = "block";
-                     
-                    if (isMobile()) {
-                        menu.style.display = "none";
-                    } else {
-                        menu.style.display = "block";
-                    }
-                } else {
-                    scrollToTopBtn.style.display = "none";
-               
-                }
-            };
-      adjustMenuVisibility();
-  // Ajuster la visibilité du menu selon la taille de l'écran
-        function adjustMenuVisibility() {
-            const menu = $("#formSection");
-            if (isMobile()) {
-                menu.hide();
+        // Scroll to Top Functionality
+        window.onscroll = function() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.classList.add('visible');
             } else {
-                menu.show();
+                scrollBtn.classList.remove('visible');
             }
-        }
-    </script>
+        };
+
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+  const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
+
+          const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
+</script>
 </head>
 <body>
     <!-- Header -->
