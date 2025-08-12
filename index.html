@@ -405,6 +405,19 @@
       plan.classList.remove('expanded');
     }
   });
+
+          const plan = document.getElementById('plan');
+
+  plan.addEventListener('click', () => {
+    plan.classList.toggle('expanded');
+  });
+
+  // Optionnel : fermer aussi avec la touche "Escape"
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+      plan.classList.remove('expanded');
+    }
+  });
 </script>
 
 </body>
