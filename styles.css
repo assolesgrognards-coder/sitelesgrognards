@@ -29,26 +29,26 @@ footer ul li::before {
   font-size: 0.9em;
   margin-right: 8px;
 }
-        .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
-  padding: 10px;
-}
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: auto;
+    }}
 
-.gallery-img {
-  width: 40%;
-  height: auto;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 8px;
-}
+    .gallery img {
+      width: 50%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-.gallery-img:hover {
-  transform: scale(1.05);
-}
-
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
 .lightbox {
   display: none;
   position: fixed;
