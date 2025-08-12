@@ -8,16 +8,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Association Les Grognards</title>
     <style>
-        .menu-button-mobile-only {
-  display: none; /* Par défaut, le bouton est masqué */
-}
-        .menucenter{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px; /* ou une autre hauteur qui convient */
-}
-        /* Background with subtle splash effect inspired by logo */
         body {
             background: linear-gradient(135deg, #f3e7e9 0%, #e0f7fa 100%);
             background-size: cover;
@@ -27,11 +17,11 @@
         }
         .center {
             display: flex;
-            justify-content: center; /* Centrage horizontal */
-            align-items: center; /* Centrage vertical */
+            justify-content: center;
+            align-items: center;
             margin-left: auto;
             margin-right: auto;
-            width: 100%; /* Ou toute autre valeur selon la taille désirée */
+            width: 100%;
             flex-direction: column;
         }
         .center ul {
@@ -43,14 +33,13 @@
             margin: 8px 0;
         }
         .center ul li a {
-            text-decoration: none; /* Remove underline from partner links */
-            color: #e0f7fa; /* Default color for partner links */
-            transition: color 0.3s ease; /* Smooth color transition */
+            text-decoration: none;
+            color: #e0f7fa;
+            transition: color 0.3s ease;
         }
         .center ul li a:hover {
-            color: #facc15; /* Yellow color on hover for partner links */
+            color: #facc15;
         }
-        /* Header styling with logo-inspired colors */
         header {
             background: linear-gradient(90deg, #1e40af, #9333ea);
             border-bottom: 5px solid #000;
@@ -61,7 +50,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         header h1 {
             color: #ff4444;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -71,7 +59,6 @@
             text-align: center;
             flex-grow: 1;
         }
-
         header p {
             color: #facc15;
             font-size: 1.125rem;
@@ -79,16 +66,12 @@
             text-align: center;
             flex-grow: 1;
         }
-
-        /* Logo styling */
         header img.logo {
-            max-width: 200px; /* Increased logo size */
-            max-height: 150px; /* Increased logo size */
+            max-width: 200px;
+            max-height: 150px;
             vertical-align: middle;
             margin-right: 20px;
         }
-
-        /* Navigation styling */
         nav {
             background: #1e293b;
             border-bottom: 2px solid #9333ea;
@@ -98,14 +81,12 @@
             z-index: 100;
             width: 100%;
         }
-
         nav .nav-links {
             margin: 0 auto;
             text-align: center;
             display: flex;
             justify-content: center;
         }
-
         nav a {
             color: #e0f7fa;
             font-weight: 500;
@@ -113,12 +94,9 @@
             margin: 0 24px;
             transition: color 0.3s ease;
         }
-
         nav a:hover {
             color: #facc15;
         }
-
-        /* Hamburger button */
         .hamburger {
             display: none;
             font-size: 24px;
@@ -128,8 +106,6 @@
             cursor: pointer;
             padding: 10px;
         }
-
-        /* Section headers with vibrant accents */
         section h2 {
             color: #1e40af;
             border-bottom: 2px solid #ff4444;
@@ -139,83 +115,57 @@
             margin: 0 auto 16px;
             text-align: center;
         }
-
         section h3, section h4 {
             color: #9333ea;
             font-size: 1.5rem;
             font-weight: 600;
             margin: 24px 0 8px;
         }
-
-        /* Main content styling */
         main {
             margin: 0 auto;
             padding: 32px;
             position: relative;
         }
-
-        /* Paragraph and list styling */
         p {
             color: #374151;
             font-size: 1.125rem;
             line-height: 1.5;
             margin: 0 0 16px;
         }
-
         ul {
             color: #374151;
             margin: 0 0 16px 20px;
         }
-
         ul li {
             position: relative;
             margin: 8px 0;
         }
-
         ul li::before {
             content: "🎲";
             color: #ff4444;
             font-size: 0.9em;
             margin-right: 8px;
         }
-
-        /* Links with logo color scheme */
         a {
             color: #9333ea;
             text-decoration: underline;
             transition: color 0.3s ease;
         }
-
         a:hover {
             color: #facc15;
         }
-
-        /* Footer with gradient */
         footer {
             background: linear-gradient(90deg, #1e40af, #9333ea);
             border-top: 5px solid #000;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
             padding: 24px 0;
         }
-
         footer p {
             color: #e0f7fa;
             margin: 0;
             text-align: center;
         }
-
-        /* Style normal de l'image */
         #plan {
-            max-width:isle de france
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Style quand l'image est agrandie */
-        #plan.expanded {
             max-width: 100%;
             height: auto;
             cursor: pointer;
@@ -223,8 +173,9 @@
             display: block;
             margin: 0 auto;
         }
-
-        /* Scroll to Top Button - Style sobre */
+        #plan.expanded {
+            transform: scale(1.5);
+        }
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -244,17 +195,14 @@
             opacity: 0;
             visibility: hidden;
         }
-
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
-
         .scroll-to-top:hover {
             background-color: #666;
             color: #fff;
         }
-
         .scroll-to-top::after {
             content: "↑";
             color: #eee;
@@ -263,7 +211,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 150px; /* Adjusted for larger logo */
+            height: 150px;
         }
         .social-button {
             display: inline-flex;
@@ -279,31 +227,34 @@
             transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
             text-decoration: none;
         }
-
         .social-button:hover {
             transform: scale(1.1);
             background-color: #facc15;
             color: #1e293b;
         }
-
-        /* Responsive adjustments */
+        .menu-button-mobile-only {
+            display: none;
+            padding: 10px 20px;
+            background-color: #1e293b;
+            color: #e0f7fa;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px auto;
+            text-align: center;
+        }
+        .menu-button-mobile-only:hover {
+            background-color: #facc15;
+            color: #1e293b;
+        }
         @media (max-width: 640px) {
-            .menu-button-mobile-only {
-  display: block; /* Par défaut, le bouton est masqué */
-}
-                .menucenter{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px; /* ou une autre hauteur qui convient */
-}
             .hamburger {
                 display: block;
                 position: absolute;
                 right: 10px;
                 top: 10px;
             }
-
             nav .nav-links {
                 display: none;
                 flex-direction: column;
@@ -314,147 +265,43 @@
                 left: 0;
                 right: 0;
                 z-index: 99;
-                transform: translateY(0); /* Ensure menu is visible on mobile */
             }
-
             nav .nav-links.active {
                 display: flex;
-                transform: translateY(0);
             }
-
             nav a {
                 margin: 10px 0;
                 font-size: 1.2rem;
             }
-
             section h2 {
                 font-size: 1.5rem;
             }
-
             main {
                 padding: 16px;
             }
-
             header {
                 flex-direction: column;
                 text-align: center;
             }
-
             header img.logo {
                 margin: 10px auto 0;
             }
-
             header h1, header p {
                 margin: 0;
             }
+            .menu-button-mobile-only {
+                display: block;
+            }
+            nav {
+                display: none;
+            }
+            nav.active {
+                display: block;
+            }
         }
     </style>
-    <script>
-// Fonction pour vérifier si l'utilisateur est sur mobile
-function isMobile() {
-    return window.innerWidth <= 768;
-}
-        // Fonction AJAX pour charger le contenu des pages
-function loadPage(page) {
-  $("#contenu-principal").fadeOut(200, function () {
-    $(this).load(page + " #contenu-principal", function (response, status, xhr) {
-      if (status === "error") {
-        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
-        return;
-      }
-
-      $(this).fadeIn(200);
-          // Gestion du bouton de retour en haut et du menu
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-         const scrollTotal = document.getElementById("scrollTotal");
-            const menu = document.getElementById("formSection");
-
-            window.onscroll = function() {
-                if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-                    scrollToTopBtn.style.display = "block";
-                     
-                    if (isMobile()) {
-                        menu.style.display = "none";
-                    } else {
-                        menu.style.display = "block";
-                    }
-                } else {
-                    scrollToTopBtn.style.display = "none";
-               
-                }
-            };
-      adjustMenuVisibility();
-        initializePlan();
-           // Ajuster la visibilité du menu lors du redimensionnement
-    $(window).on("resize", adjustMenuVisibility);
-};
-// Gestion du bouton de retour en haut et du menu
-window.onscroll = function() {
-    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-    const menu = document.getElementById("formSection");
-    const scrollPosition = document.body.scrollTop || document.documentElement.scrollTop;
-
-    if (scrollPosition > 10) {
-        scrollToTopBtn.style.display = "block";
-        menu.style.display = isMobile() ? "none" : "block";
-    } else {
-        scrollToTopBtn.style.display = "none";
-        menu.style.display = isMobile() ? "none" : "block";
-    }
-};
-  // Ajuster la visibilité du menu selon la taille de l'écran
-        function adjustMenuVisibility() {
-            const menu = $("#formSection");
-            if (isMobile()) {
-                menu.hide();
-            } else {
-                menu.show();
-            }
-        }
-        
-        // Scroll to Top Functionality
-        window.onscroll = function() {
-            const scrollBtn = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        };
-
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-  const plan = document.getElementById('plan');
-
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
-
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
-  });
-
-          const plan = document.getElementById('plan');
-
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
-
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
-  });
-</script>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="social-buttons">
             <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
@@ -474,12 +321,11 @@ window.onscroll = function() {
         </div>
     </header>
 
-    <!-- Navigation -->
-   <div class="menucenter">
-            <button onclick="$('#formSection').toggle();" class="menu-button-mobile-only">Menu</button>
-        </div>
-        <nav id="formSection" class="menu-mobile-only">
-        <button class="hamburger"><i class="fas fa-bars"></i></button>
+    <div class="menucenter">
+        <button class="menu-button-mobile-only" onclick="toggleMenu()">Menu</button>
+    </div>
+    <nav id="formSection">
+        <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div class="nav-links">
             <a href="apropos.html" onclick="loadPage('apropos.html'); return false;">Règlement</a>
             <a href="adhesion.html" onclick="loadPage('adhesion.html'); return false;">Adhésion</a>
@@ -490,10 +336,8 @@ window.onscroll = function() {
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main>
         <div id="contenu-principal">
-            <!-- Home Section -->
             <section id="home">
                 <div>
                     <h2>Bienvenue chez Les Grognards</h2>
@@ -518,7 +362,6 @@ window.onscroll = function() {
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="scroll-to-top"></div>
         <div class="center">
@@ -531,9 +374,69 @@ window.onscroll = function() {
             </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
-         <script>
-        // Scroll to Top Functionality
-        window.onscroll = function() {
+    </footer>
+
+    <script>
+        // Check if the user is on a mobile device
+        function isMobile() {
+            return window.innerWidth <= 640;
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const nav = document.getElementById('formSection');
+            const navLinks = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        // Adjust menu visibility based on screen size
+        function adjustMenuVisibility() {
+            const nav = document.getElementById('formSection');
+            if (isMobile()) {
+                nav.classList.remove('active');
+                document.querySelector('.nav-links').classList.remove('active');
+            } else {
+                nav.classList.add('active');
+                document.querySelector('.nav-links').classList.add('active');
+            }
+        }
+
+        // Load page content via AJAX
+        function loadPage(page) {
+            $("#contenu-principal").fadeOut(200, function () {
+                $(this).load(page + " #contenu-principal", function (response, status, xhr) {
+                    if (status === "error") {
+                        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
+                    }
+                    $(this).fadeIn(200);
+                    initializePlan(); // Re-initialize plan image event listeners
+                });
+            });
+        }
+
+        // Initialize plan image functionality
+        function initializePlan() {
+            const plan = document.getElementById('plan');
+            if (plan) {
+                plan.addEventListener('click', () => {
+                    plan.classList.toggle('expanded');
+                });
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+                        plan.classList.remove('expanded');
+                    }
+                });
+            }
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle scroll-to-top button visibility
+        window.onscroll = function () {
             const scrollBtn = document.querySelector('.scroll-to-top');
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 scrollBtn.classList.add('visible');
@@ -542,31 +445,11 @@ window.onscroll = function() {
             }
         };
 
-        document.querySelector('.scroll-to-top').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-              function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-function initializePlan() {
-     const plan = document.getElementById('plan');
-
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
-
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
-  });
-}
-</script>
-    </footer>
+        // Initialize event listeners
+        document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
+        $(window).on('resize', adjustMenuVisibility);
+        adjustMenuVisibility();
+        initializePlan();
+    </script>
 </body>
 </html>
