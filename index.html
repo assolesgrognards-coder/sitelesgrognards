@@ -67,12 +67,12 @@
                     <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
                 </ul>
             </section>
-             <section id="gallery">
-                 <div id="center">
+           <section id="gallery">
+  <p>✨ Découvrez nos figurines peintes avec passion !</p>
   <div class="gallery" id="gallery"></div>
-                  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="https://peinturefigurine.fr/img/logo.png" alt="Miniature Les Grognards">
-  </div>  </div>
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="Miniature Les Grognards">
+  </div>
 </section>
 <script>
   function initializeGalerie() {
@@ -80,58 +80,32 @@
       '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
     ];
 
-   const basePath = 'img/';
+    const basePath = 'img/';
     const gallery = document.getElementById('gallery');
-    const filters = document.getElementById('filters');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const categorized = {};
 
-    // Catégorisation automatique par préfixe
+    // Vider la galerie pour éviter les doublons
+    gallery.innerHTML = '';
+
+    // Affichage de toutes les images
     imageFilenames.forEach(filename => {
-      const [category] = filename.split('_');
-      if (!categorized[category]) categorized[category] = [];
-      categorized[category].push(basePath + filename);
+      const img = document.createElement('img');
+      img.src = basePath + filename;
+      img.alt = "Miniature Les Grognards";
+      img.classList.add('gallery-img');
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+      gallery.appendChild(img);
     });
 
-    // Ajout de la catégorie "Tous"
-    categorized['Tous'] = imageFilenames.map(f => basePath + f);
-
-    // Création des boutons de filtre
-    Object.keys(categorized).forEach(cat => {
-      const btn = document.createElement('button');
-      btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-      if (cat === 'Tous') btn.classList.add('active');
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        showImages(cat);
-      });
-      filters.appendChild(btn);
-    });
-
-    function showImages(category) {
-      gallery.innerHTML = '';
-      categorized[category].forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = "Miniature Studio Peinture Figurine";
-        img.classList.add('gallery-img');
-        img.addEventListener('click', () => {
-          lightbox.classList.add('active');
-          lightboxImg.src = src;
-        });
-        gallery.appendChild(img);
-      });
-    }
-
+    // Fermeture de la lightbox
     lightbox.addEventListener('click', () => {
       lightbox.classList.remove('active');
       lightboxImg.src = '';
     });
-
-    // Affichage initial : Tous
-    showImages('Tous');
   }
 
   document.addEventListener('DOMContentLoaded', initializeGalerie);
