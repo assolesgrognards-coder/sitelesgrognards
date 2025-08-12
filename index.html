@@ -332,7 +332,10 @@
         }
     </style>
     <script>
-
+// Fonction pour vérifier si l'utilisateur est sur mobile
+function isMobile() {
+    return window.innerWidth <= 768;
+}
         // Fonction AJAX pour charger le contenu des pages
 function loadPage(page) {
   $("#contenu-principal").fadeOut(200, function () {
@@ -364,6 +367,23 @@ function loadPage(page) {
             };
       adjustMenuVisibility();
         initializePlan();
+           // Ajuster la visibilité du menu lors du redimensionnement
+    $(window).on("resize", adjustMenuVisibility);
+};
+// Gestion du bouton de retour en haut et du menu
+window.onscroll = function() {
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    const menu = document.getElementById("formSection");
+    const scrollPosition = document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (scrollPosition > 10) {
+        scrollToTopBtn.style.display = "block";
+        menu.style.display = isMobile() ? "none" : "block";
+    } else {
+        scrollToTopBtn.style.display = "none";
+        menu.style.display = isMobile() ? "none" : "block";
+    }
+};
   // Ajuster la visibilité du menu selon la taille de l'écran
         function adjustMenuVisibility() {
             const menu = $("#formSection");
@@ -437,7 +457,10 @@ function loadPage(page) {
     </header>
 
     <!-- Navigation -->
-    <nav>
+   <div class="menucenter">
+            <button onclick="$('#formSection').toggle();" class="button menu-button-mobile-only">Menu</button>
+        </div>
+        <nav id="formSection" class="menu-mobile-only">
         <button class="hamburger"><i class="fas fa-bars"></i></button>
         <div class="nav-links">
             <a href="apropos.html" onclick="loadPage('apropos.html'); return false;">Règlement</a>
