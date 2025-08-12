@@ -226,7 +226,12 @@
             content: "↑";
             color: #eee;
         }
-
+.logo-container {
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* ou une autre hauteur qui convient */
+}
         .social-button {
             display: inline-flex;
             justify-content: center;
@@ -376,11 +381,11 @@ align-items: center;
                 <i class="fab fa-paypal"></i>
             </a>
         </div>
-        <div>
+         <div class="logo-container">
                    <a href="index.html" onclick="loadPage('index.html'); return false;">
             <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
         </a>
-            <p>Jeux de figurines à Roanne et alentours</p>
+           
         </div>
 
     </header>
@@ -430,11 +435,14 @@ align-items: center;
     <footer>
         <div class="scroll-to-top"></div>
         <div>
-            <h2>Nos Partenaires :</h2>
-            <p <a href="https://www.facebook.com/replaygames.shop" target="_blank">>Re-Play Games</a></p>
-            <p> <a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank">Ducs de Gascogne</a></p>
-            <p><a href="https://www.riorges.fr/" target="_blank">Mairie de Riorges</a></p>
-             <p> <a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></p>
+            <p2>Nos Partenaires :</p>
+            <ul>
+                
+           <li> <a href="https://www.facebook.com/replaygames.shop" target="_blank">Re-Play Games</a></li>
+              <li> <a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank">Ducs de Gascogne</a></li>
+            <li><a href="https://www.riorges.fr/" target="_blank">Mairie de Riorges</a></li>
+               <li> <a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
+                 </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
     </footer>
