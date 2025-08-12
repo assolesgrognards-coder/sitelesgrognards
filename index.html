@@ -16,7 +16,13 @@
             position: relative;
             margin: 0;
         }
-
+.center{
+  justify-content: center; /* Centrage horizontal */
+  align-items: center; /* Centrage vertical */
+ margin-left: auto;
+  margin-right: auto;
+  width: 100%; /* Ou toute autre valeur selon la taille désirée */
+}
         /* Header styling with logo-inspired colors */
         header {
             background: linear-gradient(90deg, #1e40af, #9333ea);
@@ -230,7 +236,7 @@
     display: fixed;
     justify-content: center;
     align-items: center;
-    height: 80px; /* ou une autre hauteur qui convient */
+    height: 100px; /* ou une autre hauteur qui convient */
 }
         .social-button {
             display: inline-flex;
@@ -434,8 +440,8 @@ align-items: center;
     <!-- Footer -->
     <footer>
         <div class="scroll-to-top"></div>
-        <div>
-            <p2>Nos Partenaires :</p>
+        <div class="center">
+            <p>Nos Partenaires :</p>
             <ul>
                 
            <li> <a href="https://www.facebook.com/replaygames.shop" target="_blank">Re-Play Games</a></li>
