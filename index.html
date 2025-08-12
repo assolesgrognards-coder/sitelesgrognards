@@ -279,14 +279,44 @@
         }
     </style>
  <script>
-     function loadPage(page) {
+  function loadPage(page) {
   $("#contenu-principal").fadeOut(200, function () {
     $(this).load(page + " #contenu-principal", function (response, status, xhr) {
       if (status === "error") {
         $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
         return;
       }
-        
+
+      $(this).fadeIn(200);
+          // Gestion du bouton de retour en haut et du menu
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+         const scrollTotal = document.getElementById("scrollTotal");
+            const menu = document.getElementById("formSection");
+
+            window.onscroll = function() {
+                if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+                    scrollToTopBtn.style.display = "block";
+                     
+                    if (isMobile()) {
+                        menu.style.display = "none";
+                    } else {
+                        menu.style.display = "block";
+                    }
+                } else {
+                    scrollToTopBtn.style.display = "none";
+               
+                }
+            };
+        adjustMenuVisibility();
+         // Ajuster la visibilité du menu selon la taille de l'écran
+        function adjustMenuVisibility() {
+            const menu = $("#formSection");
+            if (isMobile()) {
+                menu.hide();
+            } else {
+                menu.show();
+            }
+        }
  </script>
 </head>
 <body>
