@@ -447,6 +447,7 @@
                     }
                     $(this).fadeIn(200);
                     initializePlan(); // Re-initialize plan image event listeners
+                    initializeGalerie();
                 });
             });
         }
@@ -486,6 +487,7 @@
         $(window).on('resize', adjustMenuVisibility);
         adjustMenuVisibility();
         initializePlan();
+        initializeGalerie();
     </script>
 </body>
 </html>
