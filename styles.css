@@ -223,10 +223,7 @@ footer ul li::before {
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
             padding: 24px 0;
            background: linear-gradient(90deg, #1e40af, #9333ea);
-  background-image: url('img/sm.png');
-  background-size: 50% auto; /* Largeur de l'image à 50%, hauteur automatique */
-  background-position: right; /* Alignement à droite */
-  background-repeat: no-repeat;
+
         }
         footer p {
             color: #e0f7fa;
