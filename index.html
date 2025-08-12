@@ -359,6 +359,46 @@
                     <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
                 </ul>
             </section>
+             <section id="gallery">
+            <p class="galerie-description">
+    ✨ Entrez dans un univers où chaque figurine devient une œuvre d'art.
+
+  <div class="gallery" id="gallery"></div>
+</div>
+</section>
+<script>
+  function initializeGalerie() {
+    const imageFilenames = [
+ '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg','6.jpg','7.jpg','8.jpg'
+    ];
+
+    const basePath = 'img/';
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // Affichage de toutes les images
+    imageFilenames.forEach(filename => {
+      const img = document.createElement('img');
+      img.src = basePath + filename;
+      img.alt = "Miniature Studio Peinture Figurine";
+      img.classList.add('gallery-img');
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+      gallery.appendChild(img);
+    });
+
+    // Fermeture de la lightbox
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initializeGalerie);
+</script>
         </div>
     </main>
 
