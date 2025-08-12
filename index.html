@@ -8,6 +8,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Association Les Grognards</title>
     <style>
+        .menu-button-mobile-only {
+  display: none; /* Par défaut, le bouton est masqué */
+}
+        .menucenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* ou une autre hauteur qui convient */
+}
         /* Background with subtle splash effect inspired by logo */
         body {
             background: linear-gradient(135deg, #f3e7e9 0%, #e0f7fa 100%);
@@ -279,6 +288,15 @@
 
         /* Responsive adjustments */
         @media (max-width: 640px) {
+            .menu-button-mobile-only {
+  display: block; /* Par défaut, le bouton est masqué */
+}
+                .menucenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* ou une autre hauteur qui convient */
+}
             .hamburger {
                 display: block;
                 position: absolute;
@@ -458,7 +476,7 @@ window.onscroll = function() {
 
     <!-- Navigation -->
    <div class="menucenter">
-            <button onclick="$('#formSection').toggle();" class="button menu-button-mobile-only">Menu</button>
+            <button onclick="$('#formSection').toggle();" class="menu-button-mobile-only">Menu</button>
         </div>
         <nav id="formSection" class="menu-mobile-only">
         <button class="hamburger"><i class="fas fa-bars"></i></button>
