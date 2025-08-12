@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-       <link rel="icon" href="img/favicon.png">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="img/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Association Les Grognards</title>
     <style>
         /* Background with subtle splash effect inspired by logo */
@@ -15,6 +14,7 @@
             background-size: cover;
             font-family: sans-serif;
             position: relative;
+            margin: 0;
         }
 
         /* Header styling with logo-inspired colors */
@@ -30,7 +30,7 @@
         }
 
         header h1 {
-            color: #ff4444; /* Red from dice */
+            color: #ff4444;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             font-size: 2.25rem;
             font-weight: bold;
@@ -40,7 +40,7 @@
         }
 
         header p {
-            color: #facc15; /* Yellow from splashes */
+            color: #facc15;
             font-size: 1.125rem;
             margin: 8px 20px 0;
             text-align: center;
@@ -49,8 +49,8 @@
 
         /* Logo styling */
         header img.logo {
-            max-width: 150px; /* Prevent overflow by limiting width */
-            max-height: 100px; /* Adjust height to avoid overflow */
+            max-width: 150px;
+            max-height: 100px;
             vertical-align: middle;
             margin-right: 20px;
         }
@@ -60,16 +60,17 @@
             background: #1e293b;
             border-bottom: 2px solid #9333ea;
             padding: 16px 0;
+            position: sticky;
             top: 0;
-                position: sticky;
-    top: 0;
-    z-index: 100;  /* pour qu’il soit au-dessus du contenu */
-    width: 100%;
+            z-index: 100;
+            width: 100%;
         }
 
-        nav div {
+        nav .nav-links {
             margin: 0 auto;
             text-align: center;
+            display: flex;
+            justify-content: center;
         }
 
         nav a {
@@ -82,6 +83,17 @@
 
         nav a:hover {
             color: #facc15;
+        }
+
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #e0f7fa;
+            cursor: pointer;
+            padding: 10px;
         }
 
         /* Section headers with vibrant accents */
@@ -158,102 +170,115 @@
             margin: 0;
             text-align: center;
         }
-/* Style normal de l'image */
-#plan {
-  max-width: 30%;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  display: block;
-  margin: 0 auto;
-}
 
-/* Style quand l'image est agrandie */
-#plan.expanded {
-  max-width: 100%;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  display: block;
-  margin: 0 auto;
-}
+        /* Style normal de l'image */
+        #plan {
+            max-width: 30%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
 
- /* Scroll to Top Button - Style sobre */
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: url('/img/background.png') no-repeat center center fixed;
-    background-color: #444;        /* gris foncé sobre */
-    color: #eee;                   /* texte clair */
-    border: 1px solid #ccc;        /* bordure fine gris clair */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: none;              /* pas d'ombre */
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    opacity: 0;
-    visibility: hidden;
-}
+        /* Style quand l'image est agrandie */
+        #plan.expanded {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
 
-.scroll-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
+        /* Scroll to Top Button - Style sobre */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #444;
+            color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
 
-.scroll-to-top:hover {
-    background-color: #666;        /* légèrement plus clair au hover */
-    color: #fff;
-    transform: none;               /* plus de zoom */
-}
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
 
-.scroll-to-top::after {
-    content: "↑";
-     color: #eee;                   /* texte clair */
-}
+        .scroll-to-top:hover {
+            background-color: #666;
+            color: #fff;
+        }
 
+        .scroll-to-top::after {
+            content: "↑";
+            color: #eee;
+        }
 
-.social-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    margin: 0 10px;
-    border-radius: 50%;
-    background-color: #1e293b; /* fond sombre */
-    color: #e0f7fa;
-    font-size: 20px;
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    text-decoration: none;
-}
+        .social-button {
+            display: inline-flex;
+            justify-content: center;
+align-items: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            color: #e0f7fa;
+            font-size: 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
 
-.social-button:hover {
-    transform: scale(1.1);
-    background-color: #facc15; /* jaune au survol */
-    color: #1e293b; /* couleur foncée au survol */
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-
-
-  
-}
+        .social-button:hover {
+            transform: scale(1.1);
+            background-color: #facc15;
+            color: #1e293b;
+        }
 
         /* Responsive adjustments */
         @media (max-width: 640px) {
-            nav div {
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+
+            nav .nav-links {
+                display: none;
                 flex-direction: column;
-                text-align: center;
+                background: #1e293b;
+                padding: 10px;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                right: 0;
+                z-index: 99;
+                transition: transform 0.3s ease;
+                transform: translateY(-100%);
+            }
+
+            nav .nav-links.active {
+                display: flex;
+                transform: translateY(0);
             }
 
             nav a {
-                margin: 5px 0;
+                margin: 10px 0;
+                font-size: 1.2rem;
             }
 
             section h2 {
@@ -276,126 +301,37 @@
             header h1, header p {
                 margin: 0;
             }
-
-           
         }
     </style>
- <script>
-  function loadPage(page) {
-  $("#contenu-principal").fadeOut(200, function () {
-    $(this).load(page + " #contenu-principal", function (response, status, xhr) {
-      if (status === "error") {
-        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
-        return;
-      }
-
-      $(this).fadeIn(200);
-          // Gestion du bouton de retour en haut et du menu
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-         const scrollTotal = document.getElementById("scrollTotal");
-            const menu = document.getElementById("formSection");
-
-            window.onscroll = function() {
-                if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-                    scrollToTopBtn.style.display = "block";
-                     
-                    if (isMobile()) {
-                        menu.style.display = "none";
-                    } else {
-                        menu.style.display = "block";
-                    }
-                } else {
-                    scrollToTopBtn.style.display = "none";
-               
-                }
-            };
-        adjustMenuVisibility();
-         // Ajuster la visibilité du menu selon la taille de l'écran
-        function adjustMenuVisibility() {
-            const menu = $("#formSection");
-            if (isMobile()) {
-                menu.hide();
-            } else {
-                menu.show();
-            }
-        }
- </script>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="social-buttons">
-    <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
-        <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
-        <i class="fab fa-discord"></i>
-    </a>
-    <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
-        <i class="fab fa-paypal"></i>
-    </a>
-</div>
-        <div>
-            <h1>Association Les Grognards</h1>
-            <p>Jeux de figurines à Roanne et alentours</p>
-        </div>
-        <a href="index.html" onclick="loadPage('index.html'); return false;">
-        <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo"></a>
-    </header>
-
-    <!-- Navigation -->
-    <nav>
-        <div>
-        <a href="apropos.html" onclick="loadPage('apropos.html'); return false;">Règlement</a>
-        <a href="adhesion.html" onclick="loadPage('adhesion.html.html'); return false;">Adhésion</a>
-        <a href="bureau.html" onclick="loadPage('bureau.html'); return false;">Bureau</a>
-        <a href="lieu.html" onclick="loadPage('location.html'); return false;">Où nous trouver</a>
-        <a href="contact.html" onclick="loadPage('contact.html'); return false;">Contact</a>
-        <a href="croisade.html" onclick="loadPage('.html'); return false;">Croisade 40k</a>
-                  </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-         <div id="contenu-principal">
-        <!-- Home Section -->
-        <section id="home">
-            <div>
-                <h2>Bienvenue chez Les Grognards</h2>
-                <p>
-                    Rejoignez notre communauté passionnée de jeux de figurines basée à Roanne et ses alentours. Découvrez nos événements, tournois et ateliers dans une ambiance conviviale.
-                </p>
-            </div>
-        </section>
-                          <section id="about">
-            <h2>À propos</h2>
-            <h3>Bienvenue sur le Discord des Grognards</h3>
-            <p>
-                Bienvenue sur le discord de l’association des Grognards, association de jeux de figurine basée à Roanne et ses alentours.
-            </p>
-
-            <h3>Le but de l’association est de :</h3>
-            <ul>
-                <li>Promouvoir le jeu de figurine sous toutes ses formes dans la région Roannaise.</li>
-                <li>Organiser des évènements associatifs en lien avec le jeu de figurine.</li>
-                <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
-            </ul>
-
- </section>
-        <!-- À propos Section -->
-       
-         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-  <div class="scroll-to-top hidden"> <img src="img/sm.png" alt="Space Marine"></div>
-
-        <div>
-            <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
-        </div>
-    </footer>
     <script>
+        // Function to check if the screen is mobile
+        function isMobile() {
+            return window.innerWidth <= 640;
+        }
+
+        // Load page content with jQuery
+        function loadPage(page) {
+            $("#contenu-principal").fadeOut(200, function () {
+                $(this).load(page + " #contenu-principal", function (response, status, xhr) {
+                    if (status === "error") {
+                        $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
+                    }
+                    $(this).fadeIn(200);
+                    // Close mobile menu after clicking a link
+                    if (isMobile()) {
+                        $('.nav-links').removeClass('active');
+                    }
+                });
+            });
+        }
+
+        // Toggle mobile menu
+        $(document).ready(function() {
+            $('.hamburger').click(function() {
+                $('.nav-links')._toggleClass('active');
+            });
+        });
+
         // Scroll to Top Functionality
         window.onscroll = function() {
             const scrollBtn = document.querySelector('.scroll-to-top');
@@ -410,32 +346,92 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-  const plan = document.getElementById('plan');
+        // Image toggle for #plan
+        const plan = document.getElementById('plan');
+        if (plan) {
+            plan.addEventListener('click', () => {
+                plan.classList.toggle('expanded');
+            });
 
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
+            // Close with Escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+                    plan.classList.remove('expanded');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
+                <i class="fab fa-paypal"></i>
+            </a>
+        </div>
+        <div>
+            <h1>Association Les Grognards</h1>
+            <p>Jeux de figurines à Roanne et alentours</p>
+        </div>
+        <a href="index.html" onclick="loadPage('index.html'); return false;">
+            <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
+        </a>
+    </header>
 
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
-  });
+    <!-- Navigation -->
+    <nav>
+        <button class="hamburger"><i class="fas fa-bars"></i></button>
+        <div class="nav-links">
+            <a href="apropos.html" onclick="loadPage('apropos.html'); return false;">Règlement</a>
+            <a href="adhesion.html" onclick="loadPage('adhesion.html'); return false;">Adhésion</a>
+            <a href="bureau.html" onclick="loadPage('bureau.html'); return false;">Bureau</a>
+            <a href="lieu.html" onclick="loadPage('location.html'); return false;">Où nous trouver</a>
+            <a href="contact.html" onclick="loadPage('contact.html'); return false;">Contact</a>
+            <a href="croisade.html" onclick="loadPage('croisade.html'); return false;">Croisade 40k</a>
+        </div>
+    </nav>
 
-          const plan = document.getElementById('plan');
+    <!-- Main Content -->
+    <main>
+        <div id="contenu-principal">
+            <!-- Home Section -->
+            <section id="home">
+                <div>
+                    <h2>Bienvenue chez Les Grognards</h2>
+                    <p>
+                        Rejoignez notre communauté passionnée de jeux de figurines basée à Roanne et ses alentours. Découvrez nos événements, tournois et ateliers dans une ambiance conviviale.
+                    </p>
+                </div>
+            </section>
+            <section id="about">
+                <h2>À propos</h2>
+                <h3>Bienvenue sur le Discord des Grognards</h3>
+                <p>
+                    Bienvenue sur le discord de l’association des Grognards, association de jeux de figurine basée à Roanne et ses alentours.
+                </p>
+                <h3>Le but de l’association est de :</h3>
+                <ul>
+                    <li>Promouvoir le jeu de figurine sous toutes ses formes dans la région Roannaise.</li>
+                    <li>Organiser des évènements associatifs en lien avec le jeu de figurine.</li>
+                    <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
 
-  plan.addEventListener('click', () => {
-    plan.classList.toggle('expanded');
-  });
-
-  // Optionnel : fermer aussi avec la touche "Escape"
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-      plan.classList.remove('expanded');
-    }
-  });
-</script>
-
+    <!-- Footer -->
+    <footer>
+        <div class="scroll-to-top"></div>
+        <div>
+            <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 </html>
