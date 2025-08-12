@@ -421,7 +421,7 @@
 <script>
   function initializeGalerie() {
     const imageFilenames = [
- '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg','6.jpg','7.jpg','8.jpg'
+      '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
     ];
 
     const basePath = 'img/';
@@ -429,11 +429,14 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
+    // Vider la galerie pour éviter les doublons
+    gallery.innerHTML = '';
+
     // Affichage de toutes les images
     imageFilenames.forEach(filename => {
       const img = document.createElement('img');
       img.src = basePath + filename;
-      img.alt = "Miniature Les Grognards;
+      img.alt = "Miniature Les Grognards";
       img.classList.add('gallery-img');
       img.addEventListener('click', () => {
         lightbox.classList.add('active');
@@ -450,6 +453,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', initializeGalerie);
+</script>
 </script>
         </div>
     </main>
