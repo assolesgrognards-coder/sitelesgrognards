@@ -8,6 +8,48 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Association Les Grognards</title>
     <style>
+        .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+#lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
         body {
             background: linear-gradient(135deg, #f3e7e9 0%, #e0f7fa 100%);
             background-size: cover;
@@ -249,6 +291,14 @@
             color: #1e293b;
         }
         @media (max-width: 640px) {
+              .gallery {
+    grid-template-columns: repeat(2, 1fr); /* Ensure exactly 2 images per row */
+    gap: 8px; /* Smaller gap for mobile */
+  }
+
+  .gallery img {
+    width: 100%; /* Ensure images fit the smaller columns */
+  }
             .hamburger {
                 display: block;
                 position: absolute;
@@ -409,6 +459,10 @@
                 <li><a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
             </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
+                 <div class="logo-container">
+                          <img src="img/sm.png" alt="Space Marine" class="Space Marine">
+ 
+        </div>
         </div>
     </footer>
 
