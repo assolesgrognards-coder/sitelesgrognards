@@ -20,9 +20,9 @@
             === Campagne Croisade === <span class="blink">_</span>
         </div>
         <nav>
-            <a href="index.html" onclick="loadPage('index.html'); toggleMenu(); return false;">> ACCESSING: CROISADE 2025 - L'AMAS DE VANTAROTH <span class="blink">_</span></a><br>
-                      <a href="regulatum.html" onclick="loadPage('regulatum.html'); toggleMenu(); return false;">> ACCESSING: EVENT - CHUTE DE RO’ANN PRIMUS <span class="blink">_</span></a><br>
-                      <a href="roann.html" onclick="loadPage('roann.html'); toggleMenu(); return false;">> ACCESSING: FAQ - REGULATUM CRUSADIS <span class="blink">_</span></a>
+            <a href="index.html" onclick="loadPage('index.html'); return false;">> ACCESSING: CROISADE 2025 - L'AMAS DE VANTAROTH <span class="blink">_</span></a><br>
+                      <a href="regulatum.html" onclick="loadPage('regulatum.html'); return false;">> ACCESSING: EVENT - CHUTE DE RO’ANN PRIMUS <span class="blink">_</span></a><br>
+                      <a href="roann.html" onclick="loadPage('roann.html');  return false;">> ACCESSING: FAQ - REGULATUM CRUSADIS <span class="blink">_</span></a>
 
         </nav>
   <div id="contenu-principal">
@@ -209,25 +209,12 @@
                         $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
                     }
                     $(this).fadeIn(200);
-                    initializePlan(); // Re-initialize plan image event listeners
+                    
                 });
             });
         }
 
-        // Initialize plan image functionality
-        function initializePlan() {
-            const plan = document.getElementById('plan');
-            if (plan) {
-                plan.addEventListener('click', () => {
-                    plan.classList.toggle('expanded');
-                });
-                window.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-                        plan.classList.remove('expanded');
-                    }
-                });
-            }
-        }
+     
 
         // Scroll to top functionality
         function scrollToTop() {
@@ -248,7 +235,7 @@
         document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
         $(window).on('resize', adjustMenuVisibility);
         adjustMenuVisibility();
-        initializePlan();
+
     </script>
 </body>
 </html>
