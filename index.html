@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
-        <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Association Les Grognards</title>
 </head>
@@ -40,7 +40,7 @@
             <a href="bureau.html" onclick="loadPage('bureau.html'); toggleMenu(); return false;">Bureau</a>
             <a href="lieu.html" onclick="loadPage('lieu.html'); toggleMenu(); return false;">Où nous trouver</a>
             <a href="contact.html" onclick="loadPage('contact.html'); toggleMenu(); return false;">Contact</a>
-            <a href="croisade.html"   onclick="toggleMenu()" target="_blank">Croisade 40k</a>
+            <a href="croisade.html" onclick="toggleMenu()" target="_blank">Croisade 40k</a>
         </div>
     </nav>
 
@@ -64,53 +64,17 @@
                 <ul>
                     <li>Promouvoir le jeu de figurine sous toutes ses formes dans la région Roannaise.</li>
                     <li>Organiser des évènements associatifs en lien avec le jeu de figurine.</li>
-                    <li>Rencontrer des passionné-e-s qui pourrons vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
+                    <li>Rencontrer des passionné-e-s qui pourront vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
                 </ul>
             </section>
-           <section id="gallery">
-  <p>✨ Découvrez nos figurines peintes avec passion !</p>
-  <div class="gallery" id="gallery"></div>
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="Miniature Les Grognards">
-  </div>
-</section>
-<script>
-  function initializeGalerie() {
-    const imageFilenames = [
-      '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
-    ];
 
-    const basePath = 'img/';
-    const gallery = document.getElementById('gallery');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    // Vider la galerie pour éviter les doublons
-    gallery.innerHTML = '';
-
-    // Affichage de toutes les images
-    imageFilenames.forEach(filename => {
-      const img = document.createElement('img');
-      img.src = basePath + filename;
-      img.alt = "Miniature Les Grognards";
-      img.classList.add('gallery-img');
-      img.addEventListener('click', () => {
-        lightbox.classList.add('active');
-        lightboxImg.src = img.src;
-      });
-      gallery.appendChild(img);
-    });
-
-    // Fermeture de la lightbox
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-      lightboxImg.src = '';
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', initializeGalerie);
-</script>
-
+            <section id="gallery-section">
+                <p>✨ Découvrez nos figurines peintes avec passion !</p>
+                <div class="gallery" id="gallery"></div>
+                <div class="lightbox" id="lightbox">
+                    <img id="lightbox-img" src="" alt="Miniature Les Grognards">
+                </div>
+            </section>
         </div>
     </main>
 
@@ -125,86 +89,113 @@
                 <li><a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
             </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
-        
         </div>
     </footer>
 
     <script>
-        // Check if the user is on a mobile device
+        // Mobile detection
         function isMobile() {
             return window.innerWidth <= 640;
         }
 
-        // Toggle mobile menu
+        // Menu toggle
         function toggleMenu() {
-            const nav = document.getElementById('formSection');
-            const navLinks = document.querySelector('.nav-links');
-            nav.classList.toggle('active');
-            navLinks.classList.toggle('active');
+            document.getElementById('formSection').classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
         }
 
-        // Adjust menu visibility based on screen size
+        // Menu visibility based on screen size
         function adjustMenuVisibility() {
             const nav = document.getElementById('formSection');
+            const navLinks = document.querySelector('.nav-links');
             if (isMobile()) {
                 nav.classList.remove('active');
-                document.querySelector('.nav-links').classList.remove('active');
+                navLinks.classList.remove('active');
             } else {
                 nav.classList.add('active');
-                document.querySelector('.nav-links').classList.add('active');
+                navLinks.classList.add('active');
             }
         }
 
-        // Load page content via AJAX
+        // Gallery
+        function initializeGalerie() {
+            const gallery = document.getElementById('gallery');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            if (!gallery) return; // Stop if gallery not present
+
+            const imageFilenames = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'];
+            const basePath = 'img/';
+            gallery.innerHTML = '';
+
+            imageFilenames.forEach(filename => {
+                const img = document.createElement('img');
+                img.src = basePath + filename;
+                img.alt = "Miniature Les Grognards";
+                img.classList.add('gallery-img');
+                img.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = img.src;
+                });
+                gallery.appendChild(img);
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            });
+        }
+
+        // Plan image
+        function initializePlan() {
+            const plan = document.getElementById('plan');
+            if (!plan) return;
+            plan.addEventListener('click', () => {
+                plan.classList.toggle('expanded');
+            });
+            window.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && plan.classList.contains('expanded')) {
+                    plan.classList.remove('expanded');
+                }
+            });
+        }
+
+        // AJAX page loader
         function loadPage(page) {
             $("#contenu-principal").fadeOut(200, function () {
-                $(this).load(page + " #contenu-principal", function (response, status, xhr) {
+                $(this).load(page + " #contenu-principal>*", function (response, status) {
                     if (status === "error") {
                         $(this).html("<p>Une erreur est survenue lors du chargement de la page.</p>");
                     }
                     $(this).fadeIn(200);
-                    initializePlan(); // Re-initialize plan image event listeners
+                    initializePlan();
                     initializeGalerie();
                 });
             });
         }
 
-        // Initialize plan image functionality
-        function initializePlan() {
-            const plan = document.getElementById('plan');
-            if (plan) {
-                plan.addEventListener('click', () => {
-                    plan.classList.toggle('expanded');
-                });
-                window.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && plan.classList.contains('expanded')) {
-                        plan.classList.remove('expanded');
-                    }
-                });
-            }
-        }
-
-        // Scroll to top functionality
+        // Scroll to top
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handle scroll-to-top button visibility
-        window.onscroll = function () {
-            const scrollBtn = document.querySelector('.scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        };
+        // Scroll button visibility
+        window.addEventListener('scroll', () => {
+            document.querySelector('.scroll-to-top').classList.toggle(
+                'visible',
+                window.scrollY > 20
+            );
+        });
 
-        // Initialize event listeners
-        document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
-        $(window).on('resize', adjustMenuVisibility);
-        adjustMenuVisibility();
-        initializePlan();
-        initializeGalerie();
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
+            $(window).on('resize', adjustMenuVisibility);
+            adjustMenuVisibility();
+            initializePlan();
+            initializeGalerie();
+        });
     </script>
 </body>
 </html>
