@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Association Les Grognards - Communauté de jeux de figurines à Roanne. Rejoignez nos événements, tournois et ateliers.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
     <link rel="stylesheet" href="styles.css">
@@ -13,38 +12,35 @@
 <body>
     <header>
         <div class="social-buttons">
-            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" rel="noopener" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Suivez-nous sur Facebook">
-                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" rel="noopener" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://discord.gg/fqnbjkS5e6" target="_blank" rel="noopener" class="social-button discord" title="Venez sur Discord" aria-label="Rejoignez notre Discord">
-                <i class="fab fa-discord" aria-hidden="true"></i>
+            <a href="https://discord.gg/fqnbjkS5e6" target="_blank" rel="noopener" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
+                <i class="fab fa-discord"></i>
             </a>
-            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" rel="noopener" class="social-button paypal" title="Soutenir via PayPal" aria-label="Soutenez-nous via PayPal">
-                <i class="fab fa-paypal" aria-hidden="true"></i>
+            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" rel="noopener" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
+                <i class="fab fa-paypal"></i>
             </a>
         </div>
         <div class="logo-container">
-            <a href="index.html" data-page="index.html">
-                <img src="img/logofrhonardhd.png" alt="Logo de l'association Les Grognards" class="logo">
+            <a href="index.html" onclick="loadPage('index.html'); return false;">
+                <img src="img/logofrhonardhd.png" alt="Logo Grognard" class="logo">
             </a>
         </div>
     </header>
 
     <div class="menucenter">
-        <button class="menu-button-mobile-only" aria-label="Ouvrir le menu de navigation">Menu</button>
+        <button class="menu-button-mobile-only" onclick="toggleMenu()" aria-label="Open navigation menu">Menu</button>
     </div>
-    <nav id="navigation">
-        <button class="hamburger" aria-label="Basculer le menu de navigation">
-            <span class="visually-hidden">Basculer le menu</span>
-            <i class="fas fa-bars" aria-hidden="true"></i>
-        </button>
+    <nav id="formSection">
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
         <div class="nav-links">
-            <a href="apropos.html" data-page="apropos.html">Règlement</a>
-            <a href="adhesion.html" data-page="adhesion.html">Adhésion</a>
-            <a href="bureau.html" data-page="bureau.html">Bureau</a>
-            <a href="lieu.html" data-page="lieu.html">Où nous trouver</a>
-            <a href="contact.html" data-page="contact.html">Contact</a>
-            <a href="croisade/index.html" target="_blank" rel="noopener">Croisade 40k</a>
+            <a href="apropos.html" onclick="loadPage('apropos.html'); toggleMenu(); return false;">Règlement</a>
+            <a href="adhesion.html" onclick="loadPage('adhesion.html'); toggleMenu(); return false;">Adhésion</a>
+            <a href="bureau.html" onclick="loadPage('bureau.html'); toggleMenu(); return false;">Bureau</a>
+            <a href="lieu.html" onclick="loadPage('lieu.html'); toggleMenu(); return false;">Où nous trouver</a>
+            <a href="contact.html" onclick="loadPage('contact.html'); toggleMenu(); return false;">Contact</a>
+            <a href="croisade/index.html" onclick="toggleMenu()" target="_blank" rel="noopener">Croisade 40k</a>
         </div>
     </nav>
 
@@ -62,13 +58,13 @@
                 <h2>À propos</h2>
                 <h3>Bienvenue sur le Discord des Grognards</h3>
                 <p>
-                    Bienvenue sur le Discord de l’association des Grognards, association de jeux de figurines basée à Roanne et ses alentours.
+                    Bienvenue sur le discord de l’association des Grognards, association de jeux de figurine basée à Roanne et ses alentours.
                 </p>
                 <h3>Le but de l’association est de :</h3>
                 <ul>
-                    <li>Promouvoir le jeu de figurines sous toutes ses formes dans la région Roannaise.</li>
-                    <li>Organiser des événements associatifs en lien avec le jeu de figurines.</li>
-                    <li>Rencontrer des passionné·e·s qui pourront vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
+                    <li>Promouvoir le jeu de figurine sous toutes ses formes dans la région Roannaise.</li>
+                    <li>Organiser des évènements associatifs en lien avec le jeu de figurine.</li>
+                    <li>Rencontrer des passionné-e-s qui pourront vous aider et jouer avec ou contre vous dans la joie et la bonne humeur.</li>
                 </ul>
             </section>
 
@@ -76,16 +72,14 @@
                 <p>✨ Découvrez nos figurines peintes avec passion !</p>
                 <div class="gallery" id="gallery"></div>
                 <div class="lightbox" id="lightbox">
-                    <img id="lightbox-img" alt="Figurine agrandie de la galerie Les Grognards">
+                    <img id="lightbox-img" alt="Miniature Les Grognards" />
                 </div>
             </section>
         </div>
     </main>
 
     <footer>
-        <button class="scroll-to-top" aria-label="Remonter en haut de la page">
-            <span class="visually-hidden">Remonter en haut</span>
-        </button>
+        <div class="scroll-to-top" aria-label="Scroll to top"></div>
         <div class="center">
             <p>Nos Partenaires :</p>
             <ul>
@@ -96,7 +90,7 @@
                 <li><a href="https://mohand-art.com/" target="_blank" rel="noopener">Studio Mohand Miniatures</a></li>
             </ul>
             <ul>
-                <li><a href="mentionslegales.html" data-page="mentionslegales.html">Mentions Légales 💼</a></li>
+                <li><a href="mentionslegales.html" onclick="loadPage('mentionslegales.html'); scrollToTop(); return false;">Mentions Légales 💼</a></li>
             </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
@@ -110,15 +104,13 @@
 
         // Menu toggle
         function toggleMenu() {
-            const nav = document.getElementById('navigation');
-            const navLinks = document.querySelector('.nav-links');
-            nav.classList.toggle('active');
-            navLinks.classList.toggle('active');
+            document.getElementById('formSection').classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
         }
 
         // Menu visibility based on screen size
         function adjustMenuVisibility() {
-            const nav = document.getElementById('navigation');
+            const nav = document.getElementById('formSection');
             const navLinks = document.querySelector('.nav-links');
             if (isMobile()) {
                 nav.classList.remove('active');
@@ -135,21 +127,20 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
 
-            if (!gallery) return;
+            if (!gallery) return; // Stop if gallery not present
 
-            const imageFilenames = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg'];
+            const imageFilenames = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg'];
             const basePath = 'img/';
             gallery.innerHTML = '';
 
             imageFilenames.forEach(filename => {
                 const img = document.createElement('img');
                 img.src = basePath + filename;
-                img.alt = `Figurine de la galerie Les Grognards ${filename}`;
+                img.alt = "Miniature Les Grognards";
                 img.classList.add('gallery-img');
                 img.addEventListener('click', () => {
                     lightbox.classList.add('active');
                     lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
                 });
                 gallery.appendChild(img);
             });
@@ -157,7 +148,6 @@
             lightbox.addEventListener('click', () => {
                 lightbox.classList.remove('active');
                 lightboxImg.src = '';
-                lightboxImg.alt = '';
             });
         }
 
@@ -194,56 +184,22 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Event listeners
+        // Scroll button visibility
+        window.addEventListener('scroll', () => {
+            document.querySelector('.scroll-to-top').classList.toggle(
+                'visible',
+                window.scrollY > 20
+            );
+        });
+
+        // Init
         document.addEventListener('DOMContentLoaded', () => {
-            // Scroll to top button
             document.querySelector('.scroll-to-top').addEventListener('click', scrollToTop);
-
-            // Menu toggle buttons
-            document.querySelector('.menu-button-mobile-only').addEventListener('click', toggleMenu);
-            document.querySelector('.hamburger').addEventListener('click', toggleMenu);
-
-            // Page load links
-            document.querySelectorAll('a[data-page]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const page = link.getAttribute('data-page');
-                    loadPage(page);
-                    if (isMobile()) toggleMenu();
-                    if (link.getAttribute('href') === 'mentionslegales.html') scrollToTop();
-                });
-            });
-
-            // Scroll button visibility
-            window.addEventListener('scroll', () => {
-                document.querySelector('.scroll-to-top').classList.toggle(
-                    'visible',
-                    window.scrollY > 20
-                );
-            });
-
-            // Window resize
-            window.addEventListener('resize', adjustMenuVisibility);
-
-            // Initial setup
+            $(window).on('resize', adjustMenuVisibility);
             adjustMenuVisibility();
             initializePlan();
             initializeGalerie();
         });
     </script>
-
-    <style>
-        /* Visually hidden class for accessibility */
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-    </style>
 </body>
 </html>
