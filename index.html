@@ -6,19 +6,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <title>Association Les Grognards</title>
 </head>
 <body>
     <header>
         <div class="social-buttons">
-            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
+            <a href="https://www.facebook.com/AssoLesGrognards/" target="_blank" rel="noopener" class="social-button facebook" title="Suivez-nous sur Facebook" aria-label="Facebook">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://discord.gg/fqnbjkS5e6" target="_blank" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
+            <a href="https://discord.gg/fqnbjkS5e6" target="_blank" rel="noopener" class="social-button discord" title="Venez sur Discord" aria-label="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
+            <a href="https://www.paypal.me/grognardsRoannes" target="_blank" rel="noopener" class="social-button paypal" title="Soutenir via PayPal" aria-label="PayPal">
                 <i class="fab fa-paypal"></i>
             </a>
         </div>
@@ -30,17 +30,17 @@
     </header>
 
     <div class="menucenter">
-        <button class="menu-button-mobile-only" onclick="toggleMenu()">Menu</button>
+        <button class="menu-button-mobile-only" onclick="toggleMenu()" aria-label="Open navigation menu">Menu</button>
     </div>
     <nav id="formSection">
-        <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
         <div class="nav-links">
             <a href="apropos.html" onclick="loadPage('apropos.html'); toggleMenu(); return false;">Règlement</a>
             <a href="adhesion.html" onclick="loadPage('adhesion.html'); toggleMenu(); return false;">Adhésion</a>
             <a href="bureau.html" onclick="loadPage('bureau.html'); toggleMenu(); return false;">Bureau</a>
             <a href="lieu.html" onclick="loadPage('lieu.html'); toggleMenu(); return false;">Où nous trouver</a>
             <a href="contact.html" onclick="loadPage('contact.html'); toggleMenu(); return false;">Contact</a>
-            <a href="croisade/index.html" onclick="toggleMenu()" target="_blank">Croisade 40k</a>
+            <a href="croisade/index.html" onclick="toggleMenu()" target="_blank" rel="noopener">Croisade 40k</a>
         </div>
     </nav>
 
@@ -72,24 +72,25 @@
                 <p>✨ Découvrez nos figurines peintes avec passion !</p>
                 <div class="gallery" id="gallery"></div>
                 <div class="lightbox" id="lightbox">
-                    <img id="lightbox-img" alt="Miniature Les Grognards">
+                    <img id="lightbox-img" alt="Miniature Les Grognards" />
+                </div>
             </section>
         </div>
     </main>
 
     <footer>
-        <div class="scroll-to-top"></div>
+        <div class="scroll-to-top" aria-label="Scroll to top"></div>
         <div class="center">
             <p>Nos Partenaires :</p>
             <ul>
-                <li><a href="https://www.facebook.com/replaygames.shop" target="_blank">Re-Play Games</a></li>
-                <li><a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank">Ducs de Gascogne</a></li>
-                <li><a href="https://www.riorges.fr/" target="_blank">Mairie de Riorges</a></li>
-                <li><a href="https://peinturefigurine.fr/" target="_blank">Studio Peinture Figurine</a></li>
-                  <li><a href="https://mohand-art.com/" target="_blank">Studio Mohand Miniatures</a></li>
+                <li><a href="https://www.facebook.com/replaygames.shop" target="_blank" rel="noopener">Re-Play Games</a></li>
+                <li><a href="https://www.facebook.com/DucsdeGascogneRoanne" target="_blank" rel="noopener">Ducs de Gascogne</a></li>
+                <li><a href="https://www.riorges.fr/" target="_blank" rel="noopener">Mairie de Riorges</a></li>
+                <li><a href="https://peinturefigurine.fr/" target="_blank" rel="noopener">Studio Peinture Figurine</a></li>
+                <li><a href="https://mohand-art.com/" target="_blank" rel="noopener">Studio Mohand Miniatures</a></li>
             </ul>
-              <ul>
-                <li><a href="mentionslegales.html"  onclick="loadPage('mentionslegales.html');  scrollToTop(); return false;">Mentions Légales 💼</a></li>
+            <ul>
+                <li><a href="mentionslegales.html" onclick="loadPage('mentionslegales.html'); scrollToTop(); return false;">Mentions Légales 💼</a></li>
             </ul>
             <p>&copy; 2025 Association Les Grognards. Tous droits réservés.</p>
         </div>
