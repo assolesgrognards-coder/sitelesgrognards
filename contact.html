@@ -12,10 +12,21 @@
   <div id="contenu-principal">
        <!-- Contact Section -->
         <section id="contact">
-            <h2>Contactez-nous</h2>
-            <p>
-                Pour plus d'informations, envoyez-nous un email à <a href="mailto:assolesgrognards@gmail.com">assolesgrognards@gmail.com</a>.
-            </p>
+              <h2>Contactez-nous</h2>
+
+    <form action="mailto:assolesgrognards@gmail.com" method="post" enctype="text/plain">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="Nom" required>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="Prénom" required>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="Message" rows="5" required></textarea>
+
+        <button type="submit">Envoyer</button>
+    </form>
+*
         </section>
   </div>
 </body>
