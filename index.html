@@ -236,7 +236,25 @@
             initializePlan();
             initializeGalerie();
         });
-    </script>
+   
+  function envoyerMailGrognards(form) {
+    const nom = encodeURIComponent(document.getElementById("nom").value);
+    const prenom = encodeURIComponent(document.getElementById("prenom").value);
+    const message = encodeURIComponent(document.getElementById("message").value);
+
+    const subject = encodeURIComponent(`Contact - ${prenom} ${nom}`);
+    const body = encodeURIComponent(
+      `Bonjour,\n\nVous avez reçu un nouveau message :\n\n` +
+      `Nom : ${nom}\n` +
+      `Prénom : ${prenom}\n\n` +
+      `Message :\n${message}\n\n` +
+      `Cordialement,\n${prenom} ${nom}`
+    );
+
+    const mailtoLink = `mailto:assolesgrognards@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+  }
+</script>
 
 </body>
 </html>
