@@ -237,23 +237,49 @@
             initializeGalerie();
         });
    
-  function envoyerMailGrognards(form) {
-    const nom = encodeURIComponent(document.getElementById("nom").value);
-    const prenom = encodeURIComponent(document.getElementById("prenom").value);
-    const message = encodeURIComponent(document.getElementById("message").value);
+  function encodeMailto(str) {
+    // Encodage standard
+    let encoded = encodeURIComponent(str);
 
-    const subject = encodeURIComponent(`Contact - ${prenom} ${nom}`);
-    const body = encodeURIComponent(
-      `Bonjour,\n\nVous avez reçu un nouveau message :\n\n` +
-      `Nom : ${nom}\n` +
-      `Prénom : ${prenom}\n\n` +
-      `Message :\n${message}\n\n` +
-      `Cordialement,\n${prenom} ${nom}`
+    // Correction des caractères que certains clients mailto gèrent mal
+    encoded = encoded
+      .replace(/%20/g, '+')      // espaces → +
+      .replace(/%0A/g, '%0D%0A') // retour à la ligne → CRLF (format email)
+      .replace(/'/g, "%27")
+      .replace(/\(/g, "%28")
+      .replace(/\)/g, "%29")
+      .replace(/~/g, "%7E");
+
+    return encoded;
+  }
+
+  function envoyerMailGrognards(form) {
+    const nom = encodeMailto(document.getElementById("nom").value);
+    const prenom = encodeMailto(document.getElementById("prenom").value);
+    const message = encodeMailto(document.getElementById("message").value);
+
+    const subject = encodeMailto(`Contact - ${prenom} ${nom}`);
+
+    const body = encodeMailto(
+      `Bonjour,
+
+
+
+Nom : ${nom}
+Prénom : ${prenom}
+
+Message :
+${message}
+
+Cordialement,
+${prenom} ${nom}`
     );
 
     const mailtoLink = `mailto:assolesgrognards@gmail.com?subject=${subject}&body=${body}`;
+
     window.location.href = mailtoLink;
   }
+
 </script>
 
 </body>
